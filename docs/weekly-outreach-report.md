@@ -6,7 +6,7 @@ A Claude Routine (scheduled trigger) that replaces the old n8n reminder automati
 
 Every Sunday, it:
 
-1. Reads the **"Daily Outreach Tracker"** tab of the [To do sheet](https://docs.google.com/spreadsheets/d/1haslIMk5T7TVxGCii8NMB5BgXTPsmvkQyk7J5f6HboE) (columns: Date, Upwork apps sent, LinkedIn connection requests sent, LinkedIn DMs sent, Content Posted — any new outreach-count column added later is picked up automatically).
+1. Reads the **"Daily Outreach Tracker"** tab of the [To do sheet](https://docs.google.com/spreadsheets/d/1haslIMk5T7TVxGCii8NMB5BgXTPsmvkQyk7J5f6HboE) (columns: Date, Upwork apps sent, LinkedIn connection requests sent, LinkedIn DMs sent, Replies, Positive Replies, Content Posted — any new outreach-count column added later is picked up automatically). It exports the sheet as .xlsx and parses it with openpyxl rather than using the Drive connector's `read_file_content`, which only ever returns a fixed ~7-row preview per tab and doesn't reflect current data.
 2. Sums each channel for the last 7 days and compares it to the 7 days before that.
 3. Writes 3-5 concrete insight bullets: what grew/stayed consistent ("what worked") vs. what dropped or went to zero ("what didn't").
 4. Renders a branded HTML report (Anvayan navy/orange/cream theme, matching the existing "Meeting reminder" emails) with per-channel metrics and week-over-week deltas.
