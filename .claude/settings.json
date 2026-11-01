@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Gmail__search_threads",
+      "mcp__Gmail__send_message",
+      "mcp__Google_Drive__download_file_content",
+      "mcp__Google_Drive__read_file_content",
+      "mcp__Google_Calendar__list_calendars",
+      "mcp__Upwork__upwork__list_accounts",
+      "mcp__Upwork__upwork__get_freelancer_dashboard",
+      "mcp__Upwork__upwork__get_freelancer_financials",
+      "mcp__Upwork__upwork__get_messages",
+      "mcp__Upwork__upwork__list_freelancer_proposals",
+      "mcp__Upwork__upwork__list_offers"
+    ]
+  }
+}
