@@ -506,8 +506,8 @@ function CaseStudies() {
                 </h3>
                 <p className="text-ivory/70 text-[15px] leading-[1.8] mt-5 max-w-[400px]">
                   We find the prospects and run the outreach. Replies sync
-                  straight into the CRM. The BD team spends its time on
-                  calls.
+                  straight into the CRM. Manual work gets removed, and the
+                  sales team spends its time on calls.
                 </p>
               </div>
               <a
@@ -586,16 +586,11 @@ function Services() {
     },
     {
       num: "02",
-      title: "AI receptionists and assistants",
-      desc: "An AI receptionist picks up when you can't. Internal assistants answer the questions your team keeps asking each other.",
-    },
-    {
-      num: "03",
       title: "Connecting your tools",
       desc: "Details move between your tools on their own, so your team stops retyping the same thing twice.",
     },
     {
-      num: "04",
+      num: "03",
       title: "Recruitment workflows",
       desc: "Sourcing, screening, ranking and outreach drafts. A recruiter signs off before anything goes to a candidate.",
     },

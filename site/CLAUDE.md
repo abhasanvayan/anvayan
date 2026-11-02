@@ -59,7 +59,7 @@ public/brand/             # Logo master files (SVG + 1024px PNG): -midnight (lig
 - Calendly: event "15 min audit" (slug 15-min-system-audit). Custom embed colours need a paid Calendly plan, so the colour params are ignored until upgraded. Calendly's own cookie banner is left visible
 - Hosting decision: Netlify (free plan, custom domain anvayan.com). Base directory `site`, config in netlify.toml
 - Primary CTA URL: `https://calendly.com/abhas-anvayan/15-min-system-audit`
-- Email: hello@anvayan.com
+- Email: abhas@anvayan.com (hello@ is not used)
 
 ## Clients Featured (Case Studies)
 - **JG Asbestos** — Lead capture + quoting automation (GHL + n8n). Metrics (confirmed by Abhas, Nov 2026): sub-25-second response, 28% more quotes. All three clients have consented to being named.
