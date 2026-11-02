@@ -132,6 +132,17 @@ body {
   }
 }
 
+/* Gold hairline: a 1px champagne line that fades out at both ends */
+.gold-hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-champagne) 50%,
+    transparent 100%
+  );
+}
+
 /* Smooth scroll anchor offset */
 [id] {
   scroll-margin-top: 96px;

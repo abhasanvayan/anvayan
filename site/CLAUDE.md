@@ -34,7 +34,10 @@ src/
 ├── components/
 │   ├── shared.tsx        # Header, Footer, BrandMark, ArrowUpRight, Reveal
 │   ├── calendly-embed.tsx  # Calendly inline widget (client component)
+│   ├── legal.tsx           # Shared layout for Privacy and Terms
 │   └── motion-provider.tsx # MotionConfig reducedMotion="user"
+├── lib/
+│   └── site.ts             # SITE_URL, BOOKING_URL, CONTACT_EMAIL (shared by server + client)
 ├── fonts/                # Self-hosted .woff2 files
 public/brand/             # Logo master files (SVG + 1024px PNG): -midnight (light bg), -ivory (dark bg), -cyan (original colour)
 ```
@@ -64,6 +67,16 @@ public/brand/             # Logo master files (SVG + 1024px PNG): -midnight (lig
 - **Certus Recruitment** — Business development funnel (prospect research, outreach sequencing, CRM sync)
 
 ## Copy Guidelines
-- No AI-sounding language, no em dashes, no filler
-- Direct, confident, specific — every line should feel like a person wrote it
-- No "pain points", "streamline", "leverage", "revolutionise"
+Source of truth: Abhas's "anti-AI writing style" voice guide (Nov 2026). Spirit over letter. Hard rules:
+- NO em dashes or en dashes anywhere (copy, titles, meta). Use commas, colons, full stops.
+- NO negative parallelisms or reframes: "This isn't X, it's Y", "Not X. Y.", "No X, no Y, just Z", "Less X, more Y", "Stop X. Start Y", "You don't need X. You need Y", "Sure, X. But Y". Just state the positive claim.
+- Banned vocabulary includes: leverage, streamline, seamless, unlock, empower, elevate, integrated, accelerate, scalable, robust, transparent, innovative, modern-as-hype, and the rest of the list in the voice guide. Also no "nobody", "furthermore", "in order to", "straightforward".
+- Lists: use 2 or 4 items, not 3. Sentence case headings. Contractions. Numbers as digits.
+- Short paragraphs, uneven rhythm, specific scenes over abstractions, take a stance, no filler summaries.
+- Audience: recruitment firms, specialist contractors and other service businesses. Write scenes they recognise (enquiry sits until Monday, CV retyped into the CRM, quote with no follow-up).
+- Only claim what is confirmed: JG Asbestos = sub-25-second response + 28% more quotes. No new numbers without Abhas's say-so. No time-to-reply promises.
+- Check: render the site and run a copy lint over the visible text before shipping (banned words/phrases, dashes, parallelisms).
+
+## Gold (champagne) usage
+- Lines, rules, rings and icons: champagne (#C0A46E). Text on light backgrounds: gold-ink (#8A6A34) only. Text on dark: champagne.
+- Every section label uses the Eyebrow component (gold rule). Each H2 has one gold accent phrase. Primary buttons use PrimaryCta (gold ring + gold arrow). Section edges use .gold-hairline.

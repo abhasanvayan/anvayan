@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { BOOKING_URL } from "@/lib/site";
 
 /* ───────────────────────────────────────────
    SCROLL-REVEAL WRAPPER
@@ -95,12 +96,76 @@ export function ArrowUpRight({ className = "w-4 h-4" }: { className?: string }) 
 }
 
 /* ───────────────────────────────────────────
+   EYEBROW
+   Small caps label with a gold rule. Muted text on light
+   backgrounds, champagne on dark ones.
+   ─────────────────────────────────────────── */
+export function Eyebrow({
+  children,
+  tone = "light",
+  align = "left",
+  className = "",
+}: {
+  children: ReactNode;
+  tone?: "light" | "gold" | "dark";
+  align?: "left" | "center";
+  className?: string;
+}) {
+  const text =
+    tone === "dark"
+      ? "text-champagne"
+      : tone === "gold"
+        ? "text-gold-ink"
+        : "text-muted";
+  return (
+    <p
+      className={`flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase font-medium ${
+        align === "center" ? "justify-center" : ""
+      } ${text} ${className}`}
+    >
+      <span aria-hidden="true" className="h-px w-8 bg-champagne" />
+      {children}
+      {align === "center" && (
+        <span aria-hidden="true" className="h-px w-8 bg-champagne" />
+      )}
+    </p>
+  );
+}
+
+/* ───────────────────────────────────────────
+   PRIMARY CTA
+   Midnight pill with a gold ring and a gold arrow
+   ─────────────────────────────────────────── */
+export function PrimaryCta({
+  children,
+  size = "md",
+  className = "",
+}: {
+  children: ReactNode;
+  size?: "md" | "lg";
+  className?: string;
+}) {
+  const sizing = size === "lg" ? "text-[14px] px-8 py-4" : "text-[13px] px-7 py-3.5";
+  return (
+    <a
+      href={BOOKING_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group inline-flex items-center gap-4 bg-midnight text-ivory font-medium rounded-full ring-1 ring-champagne/60 hover:ring-champagne hover:bg-midnight-deep transition-all duration-300 hover:shadow-[0_8px_32px_rgba(24,33,57,0.3)] ${sizing} ${className}`}
+    >
+      {children}
+      <ArrowUpRight className="w-4 h-4 text-champagne transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </a>
+  );
+}
+
+/* ───────────────────────────────────────────
    NAV LINKS — shared between Header and Footer
    ─────────────────────────────────────────── */
 const NAV_ITEMS = [
-  { label: "Our work", href: "/#work" },
+  { label: "Work", href: "/#work" },
   { label: "What we build", href: "/#solutions" },
-  { label: "Our approach", href: "/#approach" },
+  { label: "How we work", href: "/#approach" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -122,10 +187,16 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-ivory/90 backdrop-blur-md border-b border-soft-grey/60 shadow-[0_1px_3px_rgba(24,33,57,0.04)]"
+          ? "bg-ivory/90 backdrop-blur-md shadow-[0_1px_3px_rgba(24,33,57,0.04)]"
           : "bg-transparent"
       }`}
     >
+      {scrolled && (
+        <span
+          aria-hidden="true"
+          className="gold-hairline absolute bottom-0 left-0 right-0 opacity-70"
+        />
+      )}
       <div className="container-wide flex items-center justify-between h-[76px] md:h-[88px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -149,15 +220,9 @@ export function Header() {
         </nav>
 
         {/* CTA */}
-        <a
-          href="https://calendly.com/abhas-anvayan/15-min-system-audit"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center gap-3 bg-midnight text-ivory text-[13px] font-medium px-6 py-3 rounded-full hover:bg-midnight-deep transition-all duration-300 hover:shadow-[0_4px_20px_rgba(24,33,57,0.25)]"
-        >
-          Discuss a project
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </a>
+        <PrimaryCta className="max-md:hidden px-6! py-3! gap-3!">
+          Book a call
+        </PrimaryCta>
 
         {/* Mobile menu toggle */}
         <button
@@ -187,15 +252,7 @@ export function Header() {
               {label}
             </Link>
           ))}
-          <a
-            href="https://calendly.com/abhas-anvayan/15-min-system-audit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 bg-midnight text-ivory text-[13px] font-medium px-6 py-3.5 rounded-full"
-          >
-            Discuss a project
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          <PrimaryCta className="justify-center">Book a call</PrimaryCta>
         </motion.nav>
       )}
     </header>
@@ -207,7 +264,11 @@ export function Header() {
    ─────────────────────────────────────────── */
 export function Footer() {
   return (
-    <footer className="bg-midnight-deep text-ivory/80">
+    <footer className="relative bg-midnight-deep text-ivory/80">
+      <span
+        aria-hidden="true"
+        className="gold-hairline absolute top-0 left-0 right-0 opacity-80"
+      />
       <div className="container-wide py-12 md:py-14">
         <div className="flex flex-col md:flex-row justify-between items-start gap-10 pb-16">
           <div>
@@ -218,26 +279,26 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-[12px] text-ivory/55 mt-4 max-w-[280px]">
-              Intelligent systems for modern businesses.
+              Automation that does the chasing.
             </p>
           </div>
           <nav className="flex flex-wrap gap-6 md:gap-9 text-[12px] text-ivory/60">
             {NAV_ITEMS.map(({ label, href }) => (
-              <Link key={href} href={href} className="hover:text-ivory transition-colors">
+              <Link key={href} href={href} className="hover:text-champagne transition-colors">
                 {label}
               </Link>
             ))}
           </nav>
         </div>
-        <div className="border-t border-ivory/10 pt-6 flex flex-col md:flex-row justify-between gap-4 text-[11px] text-ivory/50">
+        <div className="border-t border-champagne/20 pt-6 flex flex-col md:flex-row justify-between gap-4 text-[11px] text-ivory/50">
           <span>© {new Date().getFullYear()} Anvayan. All rights reserved.</span>
           <span className="flex flex-wrap gap-x-4 gap-y-1">
-            <Link href="/privacy" className="hover:text-ivory transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-ivory transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-champagne transition-colors">Privacy policy</Link>
+            <Link href="/terms" className="hover:text-champagne transition-colors">Terms of service</Link>
           </span>
         </div>
         <div className="mt-4 text-[11px] text-ivory/50">
-          Remote · Working with teams everywhere.
+          Remote-first. We work with teams in any time zone.
         </div>
       </div>
     </footer>

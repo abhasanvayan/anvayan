@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion-provider";
+import { SITE_URL } from "@/lib/site";
 
 const instrumentSerif = localFont({
   src: [
@@ -67,10 +68,10 @@ const dmSans = localFont({
   variable: "--font-body",
 });
 
-const SITE_URL = "https://anvayan.com";
-const SITE_TITLE = "Anvayan — Intelligent systems for modern businesses";
+const SITE_TITLE =
+  "Anvayan | AI automation for recruitment firms and service businesses";
 const SITE_DESCRIPTION =
-  "We design AI agents and automation that connect your tools, teams, and workflows — so less gets lost and more gets done.";
+  "We build AI automation for recruitment firms and service businesses. Enquiries get answered fast and follow-ups go out on time.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -7,18 +7,23 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { Reveal, ArrowUpRight, Header, Footer } from "@/components/shared";
+import {
+  Reveal,
+  ArrowUpRight,
+  Eyebrow,
+  PrimaryCta,
+  Header,
+  Footer,
+} from "@/components/shared";
 
 /* ───────────────────────────────────────────
    ROTATING WORDS
    Vertical slide with crossfade, premium feel
    ─────────────────────────────────────────── */
 const ROTATING_WORDS = [
-  "modern",
-  "growing",
-  "ambitious",
-  "evolving",
-  "thriving",
+  "recruitment firms",
+  "contractors",
+  "service businesses",
 ];
 
 function RotatingWords() {
@@ -90,14 +95,16 @@ function Hero() {
 
       <div className="container-wide relative z-10 text-center">
         {/* Eyebrow */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[11px] tracking-[0.2em] uppercase text-gold-ink font-medium mb-8"
+          className="mb-8"
         >
-          AI automation · Connected systems · Designed to work
-        </motion.p>
+          <Eyebrow tone="gold" align="center">
+            AI automation agency
+          </Eyebrow>
+        </motion.div>
 
         {/* Headline */}
         <motion.h1
@@ -111,14 +118,13 @@ function Hero() {
           }}
         >
           <span className="sr-only">
-            Intelligent systems for modern businesses.
+            Automation for recruitment firms and service businesses.
           </span>
           <span aria-hidden="true">
-            Intelligent systems
+            Automation for
             <br />
-            for{" "}
             <em className="not-italic shimmer-text">
-              <RotatingWords /> businesses.
+              <RotatingWords />.
             </em>
           </span>
         </motion.h1>
@@ -130,9 +136,9 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.55 }}
           className="text-[17px] md:text-[18px] text-muted leading-[1.7] max-w-[620px] mx-auto mt-8 tracking-[-0.01em]"
         >
-          Leads slip through. Handoffs break. The same data gets entered
-          three times. We build AI agents and automation that connect your
-          tools and teams — so the work keeps moving.
+          An enquiry lands at 6pm and sits there until Monday. A CV gets
+          retyped into the CRM by hand. We build the automation that deals
+          with it, inside the tools you already pay for.
         </motion.p>
 
         {/* CTAs */}
@@ -142,21 +148,15 @@ function Hero() {
           transition={{ duration: 0.5, delay: 0.7 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-9"
         >
-          <a
-            href="https://calendly.com/abhas-anvayan/15-min-system-audit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-4 bg-midnight text-ivory text-[13px] font-medium px-7 py-3.5 rounded-full hover:bg-midnight-deep transition-all duration-300 hover:shadow-[0_8px_32px_rgba(24,33,57,0.3)] cta-glow group"
-          >
-            Discuss your project
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          <PrimaryCta className="cta-glow">
+            Book a free 15-minute call
+          </PrimaryCta>
           <a
             href="#work"
-            className="inline-flex items-center gap-4 border border-soft-grey text-midnight text-[13px] font-medium px-7 py-3.5 rounded-full hover:bg-mist transition-all duration-300 group"
+            className="inline-flex items-center gap-4 border border-champagne/60 text-midnight text-[13px] font-medium px-7 py-3.5 rounded-full hover:bg-mist hover:border-champagne transition-all duration-300 group"
           >
-            Explore our work
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            See what we&apos;ve built
+            <ArrowUpRight className="w-4 h-4 text-gold-ink transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </motion.div>
 
@@ -167,7 +167,7 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="text-[12px] text-muted mt-7 tracking-[0.02em]"
         >
-          No templates. No guesswork. Just systems that fit.
+          Free, 15 minutes. If automation won&apos;t help, we&apos;ll say so.
         </motion.p>
       </div>
 
@@ -207,13 +207,13 @@ function Hero() {
 function Ticker() {
   const items = [
     "Enquiries answered",
-    "Candidates surfaced",
-    "Systems connected",
-    "Teams unblocked",
+    "Quotes sent",
+    "Follow-ups sent",
+    "Calls booked",
+    "CVs screened",
+    "Candidates ranked",
+    "CRM updated",
     "Leads qualified",
-    "Workflows automated",
-    "Operations streamlined",
-    "Decisions accelerated",
   ];
   const [paused, setPaused] = useState(false);
 
@@ -221,7 +221,7 @@ function Ticker() {
     <div
       className="bg-mist border-t border-b border-soft-grey overflow-hidden relative"
       role="marquee"
-      aria-label="Capabilities"
+      aria-label="What we automate"
     >
       <div
         className="marquee-track flex gap-12 min-w-max py-5"
@@ -240,7 +240,7 @@ function Ticker() {
             <span className="whitespace-nowrap text-[12px] tracking-[0.12em] uppercase text-midnight/70">
               {item}
             </span>
-            <span className="text-champagne text-[10px]" aria-hidden="true">
+            <span className="text-champagne text-[12px]" aria-hidden="true">
               ✦
             </span>
           </span>
@@ -276,9 +276,7 @@ function Problem() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[70px] items-end">
           <div>
             <Reveal>
-              <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-5">
-                Why we exist
-              </p>
+              <Eyebrow className="mb-5">Sound familiar?</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
               <h2
@@ -286,23 +284,25 @@ function Problem() {
                 className="font-display leading-[1.08] tracking-[-0.035em]"
                 style={{ fontSize: "clamp(2.75rem, 5.3vw, 4.6rem)" }}
               >
-                Good businesses are
+                Too much of the day
                 <br />
-                held back by <em className="not-italic text-gold-ink">bad handoffs.</em>
+                goes on <em className="not-italic text-gold-ink">copy and paste.</em>
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.2} direction="right">
-            <div className="lg:max-w-[400px] lg:ml-auto">
+            <div className="lg:max-w-[420px] lg:ml-auto lg:border-l lg:border-champagne/60 lg:pl-8">
               <p className="text-[16px] text-muted leading-[1.75] mb-6">
-                A lead sitting unanswered. A candidate hidden in a spreadsheet.
-                A team copying the same data into three tools.
+                The enquiry form lands in one inbox. The CV lands in another.
+                Someone retypes both into the CRM on Friday afternoon, if
+                there&apos;s time.
               </p>
               <p className="text-[16px] text-midnight leading-[1.75] font-medium">
-                These aren&apos;t people problems. They&apos;re system problems.
+                The tools don&apos;t talk to each other, so your people do the
+                talking for them.
               </p>
               <p className="text-[16px] text-muted leading-[1.75] mt-2">
-                We build the connections that close those gaps.
+                We make the tools talk.
               </p>
             </div>
           </Reveal>
@@ -330,9 +330,7 @@ function CaseStudies() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <Reveal>
-                <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-4">
-                  Selected work
-                </p>
+                <Eyebrow className="mb-4">Recent work</Eyebrow>
               </Reveal>
               <Reveal delay={0.1}>
                 <h2
@@ -340,19 +338,19 @@ function CaseStudies() {
                   className="font-display leading-[1.06] tracking-[-0.035em]"
                   style={{ fontSize: "clamp(2.5rem, 4.7vw, 4.3rem)" }}
                 >
-                  Built for the way
+                  Here&apos;s what
                   <br />
-                  your business works.
+                  we&apos;ve <em className="not-italic text-gold-ink">built so far.</em>
                 </h2>
               </Reveal>
             </div>
             <Reveal delay={0.2}>
               <a
                 href="#contact"
-                className="text-[12px] text-muted border-b border-muted/40 pb-1.5 inline-flex items-center gap-4 hover:text-midnight hover:border-midnight transition-colors"
+                className="text-[12px] text-muted border-b border-champagne pb-1.5 inline-flex items-center gap-4 hover:text-midnight hover:border-gold-ink transition-colors"
               >
-                From our portfolio
-                <ArrowUpRight className="w-3 h-3" />
+                Want something like this?
+                <ArrowUpRight className="w-3 h-3 text-gold-ink" />
               </a>
             </Reveal>
           </div>
@@ -360,30 +358,32 @@ function CaseStudies() {
 
         {/* ── Card 1: JG Asbestos ── dark, text left */}
         <Reveal>
-          <article className="bg-midnight-deep rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] shadow-[0_24px_80px_rgba(16,24,39,0.35)]">
+          <article className="bg-midnight-deep rounded-xl overflow-hidden ring-1 ring-champagne/25 grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] shadow-[0_24px_80px_rgba(16,24,39,0.35)]">
             <div className="p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 text-ivory">
               <div>
-                <p className="text-[11px] tracking-[0.18em] uppercase text-champagne font-medium mb-5">
-                  01 / Lead management · JG Asbestos
-                </p>
+                <Eyebrow tone="dark" className="mb-5">
+                  01 / JG Asbestos · Enquiries and quotes
+                </Eyebrow>
                 <h3
                   className="font-display leading-[1.09] tracking-[-0.03em]"
                   style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
                 >
-                  An enquiry shouldn&apos;t become a loose end.
+                  Enquiries get a reply in under 25 seconds.
                 </h3>
                 <p className="text-ivory/70 text-[15px] leading-[1.8] mt-5 max-w-[400px]">
-                  Connecting incoming enquiries, timely responses, and CRM
-                  updates — so the next action is clear, and opportunities
-                  don&apos;t disappear between tools. Sub-25-second response
-                  times. 28% more quotes.
+                  A new enquiry comes in. The system replies and updates the
+                  CRM. JG Asbestos now sends{" "}
+                  <strong className="font-medium text-champagne">
+                    28% more quotes
+                  </strong>
+                  .
                 </p>
               </div>
               <a
                 href="#contact"
                 className="text-[12px] text-champagne/80 border-b border-champagne/30 pb-1 inline-flex items-center gap-3 self-start hover:text-champagne hover:border-champagne/60 transition-colors"
               >
-                Ask about this project
+                Ask about this one
                 <ArrowUpRight className="w-3 h-3" />
               </a>
             </div>
@@ -399,9 +399,9 @@ function CaseStudies() {
               <div className="absolute inset-[17%] border border-ivory/[0.08] rounded-full scale-125" />
               <div className="relative z-10 w-[76%] max-w-[420px] grid gap-3 -rotate-[4deg]">
                 {[
-                  { icon: "✉", label: "New enquiry received", step: "01" },
-                  { icon: "✧", label: "Response prepared", step: "02" },
-                  { icon: "✓", label: "CRM record updated", step: "03" },
+                  { icon: "✉", label: "Enquiry comes in", step: "01" },
+                  { icon: "✧", label: "Reply goes out", step: "02" },
+                  { icon: "✓", label: "CRM updated", step: "03" },
                 ].map((pill, i) => (
                   <motion.div
                     key={i}
@@ -430,15 +430,15 @@ function CaseStudies() {
 
         {/* ── Card 2: Featherbank Selection ── light, text right */}
         <Reveal>
-          <article className="bg-mist rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] mt-8">
+          <article className="bg-mist rounded-xl overflow-hidden ring-1 ring-champagne/40 grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] mt-8">
             {/* Visual — candidate cards (left on desktop) */}
             <div className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden order-2 lg:order-1">
               <div className="absolute inset-5 border border-soft-grey/60 rounded-lg" />
               <div className="relative z-10 w-[72%] max-w-[380px] grid gap-3 rotate-[3deg]">
                 {[
-                  { initial: "A", label: "Candidate profile", tag: "94%" },
-                  { initial: "B", label: "Skills assessment", tag: "87%" },
-                  { initial: "C", label: "Availability confirmed", tag: "✓" },
+                  { initial: "A", label: "Profile matched", tag: "✓" },
+                  { initial: "B", label: "Skills checked", tag: "✓" },
+                  { initial: "C", label: "Recruiter signs off", tag: "Next" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -464,26 +464,26 @@ function CaseStudies() {
             {/* Text (right on desktop) */}
             <div className="p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 order-1 lg:order-2">
               <div>
-                <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-5">
-                  02 / Recruitment automation · Featherbank Selection
-                </p>
+                <Eyebrow className="mb-5">
+                  02 / Featherbank Selection · Shortlists
+                </Eyebrow>
                 <h3
                   className="font-display leading-[1.09] tracking-[-0.03em]"
                   style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
                 >
-                  Better sourcing. More considered decisions.
+                  From brief to shortlist, without the CV pile.
                 </h3>
                 <p className="text-[15px] text-muted leading-[1.8] mt-5 max-w-[400px]">
-                  From a recruiter&apos;s brief to a review-ready shortlist:
-                  connected candidate search, AI-assisted ranking, and human
-                  approval before any outreach goes out.
+                  A recruiter&apos;s brief goes in and an AI-ranked shortlist
+                  comes out. A recruiter approves every candidate before
+                  anyone gets contacted.
                 </p>
               </div>
               <a
                 href="#contact"
                 className="text-[12px] text-muted border-b border-muted/40 pb-1 inline-flex items-center gap-3 self-start hover:text-midnight hover:border-midnight transition-colors"
               >
-                Ask about this project
+                Ask about this one
                 <ArrowUpRight className="w-3 h-3" />
               </a>
             </div>
@@ -492,29 +492,29 @@ function CaseStudies() {
 
         {/* ── Card 3: Certus Recruitment ── dark, text left */}
         <Reveal>
-          <article className="bg-midnight rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] mt-8 shadow-[0_24px_80px_rgba(16,24,39,0.25)]">
+          <article className="bg-midnight rounded-xl overflow-hidden ring-1 ring-champagne/25 grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] mt-8 shadow-[0_24px_80px_rgba(16,24,39,0.25)]">
             <div className="p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 text-ivory">
               <div>
-                <p className="text-[11px] tracking-[0.18em] uppercase text-champagne font-medium mb-5">
-                  03 / BD automation · Certus Recruitment
-                </p>
+                <Eyebrow tone="dark" className="mb-5">
+                  03 / Certus Recruitment · New business
+                </Eyebrow>
                 <h3
                   className="font-display leading-[1.09] tracking-[-0.03em]"
                   style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
                 >
-                  A pipeline that fills itself.
+                  Follow-ups happen even when everyone&apos;s busy.
                 </h3>
                 <p className="text-ivory/70 text-[15px] leading-[1.8] mt-5 max-w-[400px]">
-                  Structured outreach, automated follow-ups, and a
-                  pipeline that keeps new business moving without
-                  manual chasing.
+                  We find the prospects and run the outreach. Replies sync
+                  straight into the CRM. The BD team spends its time on
+                  calls.
                 </p>
               </div>
               <a
                 href="#contact"
                 className="text-[12px] text-champagne/80 border-b border-champagne/30 pb-1 inline-flex items-center gap-3 self-start hover:text-champagne hover:border-champagne/60 transition-colors"
               >
-                Ask about this project
+                Ask about this one
                 <ArrowUpRight className="w-3 h-3" />
               </a>
             </div>
@@ -529,7 +529,7 @@ function CaseStudies() {
               <div className="absolute inset-[12%] border border-ivory/[0.06] rounded-2xl" />
               <div className="relative z-10 w-[72%] max-w-[400px] grid gap-2.5 rotate-[2deg]">
                 {[
-                  { icon: "◎", label: "Lead identified", status: "Done", state: "done" as const },
+                  { icon: "◎", label: "Prospect found", status: "Done", state: "done" as const },
                   { icon: "◉", label: "Outreach sent", status: "Done", state: "done" as const },
                   { icon: "▸", label: "Meeting booked", status: "Active", state: "active" as const },
                   { icon: "○", label: "Deal closed", status: "Next", state: "next" as const },
@@ -581,23 +581,23 @@ function Services() {
   const services = [
     {
       num: "01",
-      title: "Sales & revenue systems",
-      desc: "Lead capture, qualification, timed follow-up sequences, and CRM workflows that stay in sync.",
+      title: "Lead capture and follow-up",
+      desc: "Enquiries get answered fast and followed up on schedule. The CRM updates itself.",
     },
     {
       num: "02",
-      title: "AI agents & assistants",
-      desc: "Voice receptionists, triage bots, and internal assistants that handle the repeatable so your team can focus.",
+      title: "AI receptionists and assistants",
+      desc: "An AI receptionist picks up when you can't. Internal assistants answer the questions your team keeps asking each other.",
     },
     {
       num: "03",
-      title: "Operations & integration",
-      desc: "Pass data between tools automatically, close the gaps between teams, and cut the admin that nobody should be doing by hand.",
+      title: "Connecting your tools",
+      desc: "Details move between your tools on their own, so your team stops retyping the same thing twice.",
     },
     {
       num: "04",
       title: "Recruitment workflows",
-      desc: "Source, screen, rank, and reach out — with human sign-off at every step that matters.",
+      desc: "Sourcing, screening, ranking and outreach drafts. A recruiter signs off before anything goes to a candidate.",
     },
   ];
 
@@ -613,9 +613,7 @@ function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
           <div>
             <Reveal>
-              <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-4">
-                What we build
-              </p>
+              <Eyebrow className="mb-4">What we build</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
               <h2
@@ -623,16 +621,16 @@ function Services() {
                 className="font-display leading-[1.06] tracking-[-0.035em]"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4.6rem)" }}
               >
-                Less busywork.
+                The jobs we take
                 <br />
-                More business.
+                <em className="not-italic text-gold-ink">off your plate.</em>
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.15} direction="right">
             <p className="text-[16px] text-muted leading-[1.75] lg:max-w-[410px] lg:ml-auto lg:self-end">
-              We don&apos;t fit your business into a prebuilt template. Every
-              system starts with the outcome, then works backwards.
+              Every build starts with a job your team hates doing. We begin
+              there, using the tools you already have.
             </p>
           </Reveal>
         </div>
@@ -641,7 +639,7 @@ function Services() {
         <div>
           {services.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <div className="group grid grid-cols-[44px_1fr_28px] md:grid-cols-[70px_minmax(240px,1fr)_1fr_36px] items-center gap-4 md:gap-7 border-t border-soft-grey py-8 md:py-9 transition-all duration-300 hover:pl-3 cursor-pointer">
+              <div className="group relative grid grid-cols-[44px_1fr_28px] md:grid-cols-[70px_minmax(240px,1fr)_1fr_36px] items-center gap-4 md:gap-7 border-t border-soft-grey py-8 md:py-9 transition-all duration-300 hover:pl-3 cursor-pointer after:absolute after:left-0 after:-top-px after:h-px after:w-0 after:bg-champagne after:transition-all after:duration-500 hover:after:w-full">
                 <span className="text-[12px] text-muted">{s.num} /</span>
                 <h3
                   className="text-midnight font-medium tracking-[-0.03em]"
@@ -681,28 +679,32 @@ function Philosophy() {
       className="bg-midnight-deep text-ivory overflow-hidden relative"
       style={{ padding: "clamp(96px, 10vw, 168px) 0" }}
     >
+      <span
+        aria-hidden="true"
+        className="gold-hairline absolute top-0 left-0 right-0 opacity-70"
+      />
       {/* Decorative ring */}
       <div
-        className="absolute -right-48 -top-20 w-[540px] h-[540px] rounded-full border border-ivory/[0.06] pointer-events-none"
+        className="absolute -right-48 -top-20 w-[540px] h-[540px] rounded-full border border-champagne/20 pointer-events-none"
         style={{
           boxShadow:
-            "0 0 0 80px rgba(192,164,110,0.02), 0 0 0 160px rgba(192,164,110,0.01)",
+            "0 0 0 80px rgba(192,164,110,0.035), 0 0 0 160px rgba(192,164,110,0.018)",
         }}
         aria-hidden="true"
       />
 
       <div className="container-wide relative z-10">
         <Reveal>
-          <p className="text-[11px] tracking-[0.18em] uppercase text-champagne font-medium mb-6">
-            Our approach / designed before automated
-          </p>
+          <Eyebrow tone="dark" className="mb-6">
+            How we work
+          </Eyebrow>
         </Reveal>
         <Reveal delay={0.1}>
           <h2
             className="font-display leading-[1.03] tracking-[-0.035em] max-w-[950px]"
             style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
           >
-            We don&apos;t start with a bot.
+            We start with
             <br />
             <em className="not-italic text-champagne/70" style={{
               background: "linear-gradient(110deg, rgba(192,164,110,0.7) 0%, rgba(212,188,138,0.7) 30%, rgba(240,228,200,0.85) 50%, rgba(212,188,138,0.7) 70%, rgba(192,164,110,0.7) 100%)",
@@ -712,26 +714,34 @@ function Philosophy() {
               WebkitTextFillColor: "transparent",
               animation: "shimmer 5s ease-in-out infinite",
             }}>
-              We start with the bottleneck.
+              the bottleneck.
             </em>
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
           <p className="text-ivory/70 text-[17px] leading-[1.8] max-w-[600px] mt-8">
-            We sit with the process before we touch the tooling. Once we see
-            where the real friction is, we design a system around it — then
-            stay close while it beds in.
+            First we watch how work moves through your business and where it
+            gets stuck. Then we build the fix in small stages and stay close
+            while it beds in.
           </p>
         </Reveal>
         <Reveal delay={0.3}>
           <div className="flex flex-wrap gap-2.5 mt-16">
-            {["Understand", "Design", "Build", "Refine"].map((step, i) => (
+            {[
+              "Understand the process",
+              "Design the fix",
+              "Build in stages",
+              "Tune after launch",
+            ].map((step, i) => (
               <span key={step} className="flex items-center gap-2.5">
-                <span className="px-5 py-3.5 border border-ivory/20 rounded-full text-[12px] text-ivory/90 hover:border-champagne/40 transition-colors">
+                <span className="flex items-center gap-3 px-5 py-3.5 border border-champagne/30 rounded-full text-[12px] text-ivory/90 hover:border-champagne/70 transition-colors">
+                  <span className="text-[11px] text-champagne font-medium">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {step}
                 </span>
                 {i < 3 && (
-                  <span className="text-champagne/50 text-[13px] hidden sm:inline">
+                  <span className="text-champagne/70 text-[13px] hidden sm:inline">
                     →
                   </span>
                 )}
@@ -759,30 +769,28 @@ function Founders() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-16 lg:gap-[130px] items-start">
           <div>
             <Reveal>
-              <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-4">
-                The people behind Anvayan
-              </p>
+              <Eyebrow className="mb-4">Who you&apos;ll work with</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
               <h2
                 className="font-display leading-[1.08] tracking-[-0.035em]"
                 style={{ fontSize: "clamp(2.75rem, 5vw, 4.6rem)" }}
               >
-                Systems thinking.
-                <br />A human perspective.
+                You talk to the
+                <br />
+                people who <em className="not-italic text-gold-ink">build it.</em>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="text-[16px] text-muted leading-[1.85] mt-8 max-w-[500px]">
-                We&apos;ve built systems for recruitment firms, specialist
-                contractors, and growing service businesses. What they have in
-                common: tight teams, real constraints, and no patience for
-                tools that create more work than they save.
+                We&apos;ve built for recruitment firms and specialist
+                contractors, and the same problems show up in plenty of
+                service businesses. Tight teams with real deadlines have no
+                patience for a tool that creates more admin than it saves.
               </p>
               <p className="text-[16px] text-muted leading-[1.85] mt-5 max-w-[500px]">
-                You&apos;ll work directly with us — not an account manager,
-                not a sales team. The people who design the system are the
-                people who build it.
+                You work with the two of us. The people who design the system
+                are the people who build it.
               </p>
             </Reveal>
           </div>
@@ -794,9 +802,9 @@ function Founders() {
                   { initial: "A", name: "Abhas", role: "Co-founder" },
                   { initial: "N", name: "Nishi", role: "Co-founder" },
                 ].map((person) => (
-                  <div key={person.name} className="border-t border-soft-grey pt-5">
+                  <div key={person.name} className="border-t border-champagne/50 pt-5">
                     <div
-                      className="h-[200px] md:h-[220px] rounded-lg flex items-center justify-center font-display text-[72px] md:text-[80px] relative overflow-hidden"
+                      className="h-[200px] md:h-[220px] rounded-lg flex items-center justify-center font-display text-[72px] md:text-[80px] relative overflow-hidden ring-1 ring-champagne/50"
                       style={{
                         background:
                           "linear-gradient(145deg, var(--color-mist), var(--color-champagne))",
@@ -833,43 +841,38 @@ function FinalCTA() {
   return (
     <section
       id="contact"
-      className="bg-mist"
+      className="relative bg-mist"
       style={{ padding: "clamp(96px, 10vw, 148px) 0" }}
     >
+      <span
+        aria-hidden="true"
+        className="gold-hairline absolute top-0 left-0 right-0 opacity-80"
+      />
       <div className="container-wide">
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20 items-center">
           <div>
             <Reveal>
-              <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-4">
-                The next step
-              </p>
+              <Eyebrow className="mb-4">Next step</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
               <h2
                 className="font-display leading-[1.05] tracking-[-0.035em]"
                 style={{ fontSize: "clamp(3rem, 5.9vw, 5.25rem)" }}
               >
-                There&apos;s a better way
+                Tell us what&apos;s
                 <br />
-                for this to run.
+                eating <em className="not-italic text-gold-ink">your week.</em>
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.2} direction="right">
             <div>
               <p className="text-[17px] text-muted leading-[1.75] mb-8">
-                Tell us what keeps slowing your team down. We&apos;ll tell you
-                where automation would help — and where it wouldn&apos;t.
+                Book 15 minutes and talk us through it. If automation will
+                help, we&apos;ll say how. If it won&apos;t, we&apos;ll say that
+                too.
               </p>
-              <a
-                href="https://calendly.com/abhas-anvayan/15-min-system-audit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-4 bg-midnight text-ivory text-[14px] font-medium px-8 py-4 rounded-full hover:bg-midnight-deep transition-all duration-300 hover:shadow-[0_8px_32px_rgba(24,33,57,0.3)] group"
-              >
-                Start the conversation
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              <PrimaryCta size="lg">Book a free call</PrimaryCta>
             </div>
           </Reveal>
         </div>
