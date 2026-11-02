@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Reveal } from "@/components/shared";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy — Anvayan",
   description: "How Anvayan collects, uses, and protects your information.",
 };
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Header />
-      <main className="pt-[88px]">
+      <main id="main" className="pt-[88px]">
         <article className="py-20 md:py-28">
           <div className="container-wide">
             <div className="max-w-[760px]">
@@ -108,7 +109,7 @@ export default function PrivacyPage() {
                       your data. To exercise any of these rights, contact us at{" "}
                       <a
                         href="mailto:hello@anvayan.com"
-                        className="text-champagne hover:text-gold-ink transition-colors underline underline-offset-2"
+                        className="text-gold-ink hover:text-midnight transition-colors underline underline-offset-2"
                       >
                         hello@anvayan.com
                       </a>
@@ -130,7 +131,7 @@ export default function PrivacyPage() {
                         href="https://calendly.com/privacy"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-champagne hover:text-gold-ink transition-colors underline underline-offset-2"
+                        className="text-gold-ink hover:text-midnight transition-colors underline underline-offset-2"
                       >
                         Calendly&rsquo;s privacy policy
                       </a>
@@ -161,7 +162,7 @@ export default function PrivacyPage() {
                       handle your data, email us at{" "}
                       <a
                         href="mailto:hello@anvayan.com"
-                        className="text-champagne hover:text-gold-ink transition-colors underline underline-offset-2"
+                        className="text-gold-ink hover:text-midnight transition-colors underline underline-offset-2"
                       >
                         hello@anvayan.com
                       </a>

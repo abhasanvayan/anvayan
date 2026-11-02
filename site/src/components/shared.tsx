@@ -204,7 +204,7 @@ export function Footer() {
                 Anvayan
               </span>
             </Link>
-            <p className="text-[12px] text-ivory/40 mt-4 max-w-[280px]">
+            <p className="text-[12px] text-ivory/55 mt-4 max-w-[280px]">
               Intelligent systems for modern businesses.
             </p>
           </div>
@@ -216,14 +216,14 @@ export function Footer() {
             ))}
           </nav>
         </div>
-        <div className="border-t border-ivory/10 pt-6 flex flex-col md:flex-row justify-between gap-4 text-[11px] text-ivory/30">
+        <div className="border-t border-ivory/10 pt-6 flex flex-col md:flex-row justify-between gap-4 text-[11px] text-ivory/50">
           <span>© {new Date().getFullYear()} Anvayan. All rights reserved.</span>
           <span className="flex flex-wrap gap-x-4 gap-y-1">
-            <Link href="/privacy" className="hover:text-ivory/50 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-ivory/50 transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-ivory transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-ivory transition-colors">Terms of Service</Link>
           </span>
         </div>
-        <div className="mt-4 text-[11px] text-ivory/20">
+        <div className="mt-4 text-[11px] text-ivory/50">
           London · Remote · Wherever the work is.
         </div>
       </div>

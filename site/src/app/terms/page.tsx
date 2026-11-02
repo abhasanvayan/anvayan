@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Reveal } from "@/components/shared";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Service — Anvayan",
   description: "Terms and conditions for using Anvayan's services and website.",
 };
@@ -10,7 +11,7 @@ export default function TermsPage() {
   return (
     <>
       <Header />
-      <main className="pt-[88px]">
+      <main id="main" className="pt-[88px]">
         <article className="py-20 md:py-28">
           <div className="container-wide">
             <div className="max-w-[760px]">
@@ -153,7 +154,7 @@ export default function TermsPage() {
                       Questions about these terms? Email us at{" "}
                       <a
                         href="mailto:hello@anvayan.com"
-                        className="text-champagne hover:text-gold-ink transition-colors underline underline-offset-2"
+                        className="text-gold-ink hover:text-midnight transition-colors underline underline-offset-2"
                       >
                         hello@anvayan.com
                       </a>

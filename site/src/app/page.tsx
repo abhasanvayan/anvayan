@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
-  useInView,
+  useReducedMotion,
   useScroll,
   useTransform,
 } from "framer-motion";
-import { Reveal, BrandMark, ArrowUpRight, Header, Footer } from "@/components/shared";
+import { Reveal, ArrowUpRight, Header, Footer } from "@/components/shared";
 
 /* ───────────────────────────────────────────
    ROTATING WORDS
@@ -22,29 +22,30 @@ const ROTATING_WORDS = [
 ];
 
 function RotatingWords() {
-  const [index, setIndex] = useState(0);
-  const [displayWord, setDisplayWord] = useState(ROTATING_WORDS[0]);
+  const reduceMotion = useReducedMotion();
+  const [wordIndex, setWordIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
+    // Respect "reduce motion": keep the first word, no rotation.
+    if (reduceMotion) return;
+    let swap: ReturnType<typeof setTimeout>;
     const timer = setInterval(() => {
       setIsAnimating(true);
-      setTimeout(() => {
-        setIndex((prev) => {
-          const next = (prev + 1) % ROTATING_WORDS.length;
-          setDisplayWord(ROTATING_WORDS[next]);
-          return next;
-        });
+      swap = setTimeout(() => {
+        setWordIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
         setIsAnimating(false);
       }, 400);
     }, 2800);
-    return () => clearInterval(timer);
-  }, []);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(swap);
+    };
+  }, [reduceMotion]);
 
   return (
     <motion.span
       className="inline-block"
-      aria-live="polite"
       animate={{
         opacity: isAnimating ? 0 : 1,
         y: isAnimating ? -12 : 0,
@@ -53,70 +54,9 @@ function RotatingWords() {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       layout
     >
-      {displayWord}
+      {ROTATING_WORDS[wordIndex]}
     </motion.span>
   );
-}
-
-/* ───────────────────────────────────────────
-   ANIMATED COUNTER
-   Counts up from 0 when scrolled into view
-   ─────────────────────────────────────────── */
-function AnimatedCounter({
-  value,
-  duration = 1.6,
-}: {
-  value: string;
-  duration?: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const [display, setDisplay] = useState(value);
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    // Parse numeric portion
-    const match = value.match(/^([<+£$]?)([\d.]+)([%kKmM/\d]*[a-zA-Z/]*)/);
-    if (!match) {
-      setDisplay(value);
-      return;
-    }
-
-    const prefix = match[1];
-    const numStr = match[2];
-    const suffix = match[3];
-    const target = parseFloat(numStr);
-    const hasDecimal = numStr.includes(".");
-    const decimalPlaces = hasDecimal ? numStr.split(".")[1].length : 0;
-
-    const startTime = performance.now();
-    const durationMs = duration * 1000;
-
-    function update(now: number) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / durationMs, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = target * eased;
-
-      if (hasDecimal) {
-        setDisplay(`${prefix}${current.toFixed(decimalPlaces)}${suffix}`);
-      } else {
-        setDisplay(`${prefix}${Math.round(current)}${suffix}`);
-      }
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        setDisplay(value);
-      }
-    }
-
-    requestAnimationFrame(update);
-  }, [isInView, value, duration]);
-
-  return <span ref={ref}>{display}</span>;
 }
 
 /* ───────────────────────────────────────────
@@ -167,15 +107,20 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="font-display font-normal text-midnight leading-[0.98] tracking-[-0.035em] mx-auto max-w-[1040px]"
           style={{
-            fontSize: "clamp(3rem, 8vw, 7rem)",
+            fontSize: "clamp(2.5rem, 8vw, 7rem)",
           }}
         >
-          Intelligent systems
-          <br />
-          for{" "}
-          <em className="not-italic shimmer-text">
-            <RotatingWords /> businesses.
-          </em>
+          <span className="sr-only">
+            Intelligent systems for modern businesses.
+          </span>
+          <span aria-hidden="true">
+            Intelligent systems
+            <br />
+            for{" "}
+            <em className="not-italic shimmer-text">
+              <RotatingWords /> businesses.
+            </em>
+          </span>
         </motion.h1>
 
         {/* Supporting copy */}
@@ -279,7 +224,7 @@ function Ticker() {
       aria-label="Capabilities"
     >
       <div
-        className="flex gap-12 min-w-max py-5"
+        className="marquee-track flex gap-12 min-w-max py-5"
         style={{
           animation: paused ? "none" : "marquee 40s linear infinite",
         }}
@@ -287,8 +232,12 @@ function Ticker() {
         onMouseLeave={() => setPaused(false)}
       >
         {[...items, ...items].map((item, i) => (
-          <span key={i} className="flex items-center gap-12">
-            <span className="whitespace-nowrap text-[12px] tracking-[0.12em] uppercase text-midnight/60">
+          <span
+            key={i}
+            className="flex items-center gap-12"
+            aria-hidden={i >= items.length ? true : undefined}
+          >
+            <span className="whitespace-nowrap text-[12px] tracking-[0.12em] uppercase text-midnight/70">
               {item}
             </span>
             <span className="text-champagne text-[10px]" aria-hidden="true">
@@ -501,7 +450,7 @@ function CaseStudies() {
                     <span className="text-[13px] text-midnight font-medium flex-1">
                       {item.label}
                     </span>
-                    <span className="text-[12px] text-champagne font-semibold">
+                    <span className="text-[12px] text-gold-ink font-semibold">
                       {item.tag}
                     </span>
                   </motion.div>
@@ -910,6 +859,7 @@ function FAQ() {
     <section
       className="bg-mist"
       style={{ padding: "clamp(96px, 10vw, 148px) 0" }}
+      aria-labelledby="faq-title"
     >
       <div className="container-wide max-w-[860px]">
         <Reveal>
@@ -917,6 +867,7 @@ function FAQ() {
             Common questions
           </p>
           <h2
+            id="faq-title"
             className="font-display leading-[1.08] tracking-[-0.035em] mb-12"
             style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}
           >
@@ -932,6 +883,8 @@ function FAQ() {
                   className="w-full text-left py-6 flex items-start justify-between gap-6 group cursor-pointer"
                   onClick={() => setOpen(open === i ? null : i)}
                   aria-expanded={open === i}
+                  aria-controls={`faq-panel-${i}`}
+                  id={`faq-button-${i}`}
                 >
                   <span className="text-[16px] md:text-[17px] text-midnight font-medium leading-[1.5] pr-4">
                     {faq.q}
@@ -945,6 +898,10 @@ function FAQ() {
                   </span>
                 </button>
                 <motion.div
+                  id={`faq-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-button-${i}`}
+                  inert={open !== i}
                   initial={false}
                   animate={{
                     height: open === i ? "auto" : 0,
@@ -1027,7 +984,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <Ticker />
         <Problem />

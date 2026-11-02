@@ -1,8 +1,13 @@
-"use client";
-
-import { useEffect } from "react";
-import { Header, Footer, Reveal, ArrowUpRight } from "@/components/shared";
 import type { Metadata } from "next";
+import { Header, Footer, Reveal, ArrowUpRight } from "@/components/shared";
+import { CalendlyEmbed } from "@/components/calendly-embed";
+
+export const metadata: Metadata = {
+  title: "Contact — Anvayan",
+  description:
+    "Book a free 15-minute system audit with Anvayan, or email hello@anvayan.com.",
+  alternates: { canonical: "/contact" },
+};
 
 /* ───────────────────────────────────────────
    CONTACT PAGE
@@ -10,21 +15,10 @@ import type { Metadata } from "next";
    ─────────────────────────────────────────── */
 
 export default function ContactPage() {
-  useEffect(() => {
-    // Load Calendly widget script
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.head.appendChild(script);
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   return (
     <>
       <Header />
-      <main className="pt-[88px]">
+      <main id="main" className="pt-[88px]">
         {/* Hero */}
         <section className="py-20 md:py-28">
           <div className="container-wide">
@@ -55,11 +49,7 @@ export default function ContactPage() {
         <section className="pb-24 md:pb-32">
           <div className="container-wide">
             <Reveal delay={0.3}>
-              <div
-                className="calendly-inline-widget rounded-2xl overflow-hidden border border-soft-grey/60"
-                data-url="https://calendly.com/abhas-anvayan/15-min-system-audit?hide_gdpr_banner=1&background_color=f7f5f0&text_color=182139&primary_color=182139"
-                style={{ minWidth: "320px", height: "700px" }}
-              />
+              <CalendlyEmbed />
             </Reveal>
           </div>
         </section>

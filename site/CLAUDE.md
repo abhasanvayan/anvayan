@@ -20,7 +20,10 @@ npx serve out -p 3000  # Serve the static build (NOT next start)
 ```
 src/
 ├── app/
-│   ├── layout.tsx        # Root layout (fonts, metadata)
+│   ├── layout.tsx        # Root layout (fonts, metadata, skip link, reduced-motion provider)
+│   ├── robots.ts         # robots.txt (static)
+│   ├── sitemap.ts        # sitemap.xml (static)
+│   ├── opengraph-image.png / twitter-image.png  # DRAFT share image (type-only), pending approval
 │   ├── globals.css       # Design tokens (@theme inline), animations
 │   ├── page.tsx          # Homepage — all 10 sections
 │   ├── contact/page.tsx  # Contact page with Calendly embed
@@ -28,14 +31,16 @@ src/
 │   ├── terms/page.tsx    # Terms of Service
 │   └── not-found.tsx     # Custom 404
 ├── components/
-│   └── shared.tsx        # Header, Footer, BrandMark, ArrowUpRight, Reveal
+│   ├── shared.tsx        # Header, Footer, BrandMark, ArrowUpRight, Reveal
+│   ├── calendly-embed.tsx  # Calendly inline widget (client component)
+│   └── motion-provider.tsx # MotionConfig reducedMotion="user"
 └── fonts/                # Self-hosted .woff2 files
 ```
 
 ## Design System
-- **Palette**: Midnight #182139, Midnight Deep #101827, Champagne #C0A46E, Gold Ink #8A6A34, Warm Ivory #F7F5F0, Soft Grey #DDDCD9, Mist #EEECE7, Muted #667085
+- **Palette**: Midnight #182139, Midnight Deep #101827, Champagne #C0A46E, Gold Ink #8A6A34, Warm Ivory #F7F5F0, Soft Grey #DDDCD9, Mist #EEECE7, Muted #5F6A7D (darkened from #667085 for WCAG AA contrast)
 - **Typography**: Instrument Serif (display, `--font-display`) + DM Sans (body, `--font-body`)
-- **Hero heading**: `clamp(3rem, 8vw, 7rem)`, line-height 0.98, letter-spacing -0.035em
+- **Hero heading**: `clamp(2.5rem, 8vw, 7rem)` (min lowered from 3rem so the rotating word doesn't reflow the headline on 360-430px phones), line-height 0.98, letter-spacing -0.035em
 - **Container**: max-width 1280px (`container-wide`), reading width 760px (`container-reading`)
 - **Motion**: "Quietly alive" — scroll-triggered reveals via framer-motion `useInView`, rotating words in hero, shimmer effects on accents
 

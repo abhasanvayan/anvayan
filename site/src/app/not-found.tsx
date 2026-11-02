@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Header, Footer, BrandMark } from "@/components/shared";
+import { Header, Footer } from "@/components/shared";
 
 export const metadata = {
   title: "Page not found — Anvayan",
@@ -9,7 +9,7 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="pt-[88px]">
+      <main id="main" className="pt-[88px]">
         <section className="py-24 md:py-36">
           <div className="container-wide text-center">
             <p className="text-[11px] tracking-[0.2em] uppercase text-gold-ink font-medium mb-8">
