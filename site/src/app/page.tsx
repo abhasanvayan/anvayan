@@ -372,7 +372,7 @@ function CaseStudies() {
                   Connecting incoming enquiries, timely responses, and CRM
                   updates — so the next action is clear, and opportunities
                   don&apos;t disappear between tools. Sub-25-second response
-                  times. 45% more leads captured.
+                  times. 28% more quotes.
                 </p>
               </div>
               <a
@@ -813,10 +813,6 @@ function Founders() {
                   </div>
                 ))}
               </div>
-              <p className="text-[12px] text-muted/60 mt-4 italic">
-                Founder photography and individual biographies to be added with
-                approved assets.
-              </p>
             </div>
           </Reveal>
         </div>

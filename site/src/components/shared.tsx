@@ -224,7 +224,7 @@ export function Footer() {
           </span>
         </div>
         <div className="mt-4 text-[11px] text-ivory/50">
-          London · Remote · Wherever the work is.
+          Remote · Working with teams everywhere.
         </div>
       </div>
     </footer>

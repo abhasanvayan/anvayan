@@ -122,19 +122,6 @@ export default function TermsPage() {
                 <Reveal delay={0.15}>
                   <section>
                     <h2 className="font-display text-[20px] text-midnight mb-3">
-                      Governing law
-                    </h2>
-                    <p className="text-[15px] text-midnight/80 leading-relaxed">
-                      These terms are governed by the laws of England and
-                      Wales. Any disputes shall be subject to the exclusive
-                      jurisdiction of the courts of England and Wales.
-                    </p>
-                  </section>
-                </Reveal>
-
-                <Reveal delay={0.15}>
-                  <section>
-                    <h2 className="font-display text-[20px] text-midnight mb-3">
                       Changes to these terms
                     </h2>
                     <p className="text-[15px] text-midnight/80 leading-relaxed">

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const CALENDLY_URL =
-  "https://calendly.com/abhas-anvayan/15-min-system-audit?hide_gdpr_banner=1&background_color=f7f5f0&text_color=182139&primary_color=182139";
+  "https://calendly.com/abhas-anvayan/15-min-system-audit?background_color=f7f5f0&text_color=182139&primary_color=182139";
 
 /**
  * Calendly inline widget. Loads Calendly's script once the component mounts

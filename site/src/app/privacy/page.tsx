@@ -40,10 +40,9 @@ export default function PrivacyPage() {
                       Who we are
                     </h2>
                     <p className="text-[15px] text-midnight/80 leading-relaxed">
-                      Anvayan is an AI automation consultancy based in London,
-                      United Kingdom. When we refer to &ldquo;we&rdquo;,
-                      &ldquo;us&rdquo;, or &ldquo;our&rdquo; in this policy, we
-                      mean Anvayan.
+                      Anvayan is an AI automation consultancy. When we refer to
+                      &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo; in
+                      this policy, we mean Anvayan.
                     </p>
                   </section>
                 </Reveal>
@@ -61,9 +60,10 @@ export default function PrivacyPage() {
                       business needs.
                     </p>
                     <p className="text-[15px] text-midnight/80 leading-relaxed">
-                      Our website does not use tracking cookies or third-party
-                      analytics. The Calendly embed on our contact page is subject
-                      to Calendly&rsquo;s own privacy policy.
+                      Our website itself does not use analytics or advertising
+                      cookies. The Calendly booking widget on our contact page is
+                      provided by Calendly and may set its own cookies; it is
+                      subject to Calendly&rsquo;s own privacy policy.
                     </p>
                   </section>
                 </Reveal>
@@ -103,10 +103,9 @@ export default function PrivacyPage() {
                       Your rights
                     </h2>
                     <p className="text-[15px] text-midnight/80 leading-relaxed">
-                      Under UK data protection law (UK GDPR), you have the right
-                      to access, correct, or delete the personal data we hold about
-                      you. You may also object to or restrict our processing of
-                      your data. To exercise any of these rights, contact us at{" "}
+                      You can ask us to access, correct, or delete the personal
+                      data we hold about you, and to stop or limit how we use it.
+                      To make a request, contact us at{" "}
                       <a
                         href="mailto:hello@anvayan.com"
                         className="text-gold-ink hover:text-midnight transition-colors underline underline-offset-2"

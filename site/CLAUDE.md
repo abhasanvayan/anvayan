@@ -48,12 +48,15 @@ src/
 - **Next.js 16 has breaking changes** — always check `node_modules/next/dist/docs/` before using unfamiliar APIs
 - `LayoutProps<"/">` type is the Next.js 16 convention for root layout props
 - The Calendly widget loads via external script on the contact page — it won't render in static screenshots but works live
-- Founder photos are placeholder typographic initials (A/N) — real photos to be added
+- Founder photos are placeholder typographic initials (A/N) by decision for now; swap in real photos later
+- Anvayan is India-based and not a UK company. Do NOT claim a London/UK base anywhere; location copy is neutral ("Remote-first"). Privacy/Terms are deliberately light and jurisdiction-neutral (no governing-law clause yet)
+- Calendly: event "15 min audit" (slug 15-min-system-audit). Custom embed colours need a paid Calendly plan, so the colour params are ignored until upgraded. Calendly's own cookie banner is left visible
+- Hosting decision: Netlify (free plan, custom domain anvayan.com). Base directory `site`, config in netlify.toml
 - Primary CTA URL: `https://calendly.com/abhas-anvayan/15-min-system-audit`
 - Email: hello@anvayan.com
 
 ## Clients Featured (Case Studies)
-- **JG Asbestos** — Lead capture + quoting automation (GHL + n8n). Metrics: 3.2x pipeline, <90s response, 28% more quotes.
+- **JG Asbestos** — Lead capture + quoting automation (GHL + n8n). Metrics (confirmed by Abhas, Nov 2026): sub-25-second response, 28% more quotes. All three clients have consented to being named.
 - **Featherbank Selection** — AI recruitment pipeline (sourcing, screening, ranking with human sign-off)
 - **Certus Recruitment** — Business development funnel (prospect research, outreach sequencing, CRM sync)
 

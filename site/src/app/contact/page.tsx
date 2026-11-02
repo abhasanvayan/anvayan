@@ -77,12 +77,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h2 className="font-display text-[22px] text-midnight mb-2">
-                    Based in
+                    Where we work
                   </h2>
                   <p className="text-[14px] text-muted leading-relaxed">
-                    London, United Kingdom
+                    Remote-first.
                     <br />
-                    Working remotely with teams everywhere.
+                    Working with teams across time zones.
                   </p>
                 </div>
               </div>
