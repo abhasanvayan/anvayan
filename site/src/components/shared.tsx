@@ -46,18 +46,31 @@ export function Reveal({
 
 /* ───────────────────────────────────────────
    BRAND MARK (SVG)
+   Hub-and-spoke mark. Draws in currentColor, so set the colour with a
+   text-* class: text-midnight on light backgrounds, text-ivory on dark.
+   Master files live in /public/brand.
    ─────────────────────────────────────────── */
-export function BrandMark({ className = "w-7 h-7" }: { className?: string }) {
+const MARK_ARM_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
+
+export function BrandMark({ className = "w-8 h-8" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 36 36"
-      fill="none"
+      viewBox="-470 -470 940 940"
+      fill="currentColor"
       className={className}
       aria-hidden="true"
     >
-      <path d="M3 28L15.8 5h6.5L9.5 28z" fill="#467f63" />
-      <path d="M21.2 5L34 28h-7.4L18 12.7z" fill="#88734B" />
-      <path d="M13 28l5.3-9.2 5.2 9.2z" fill="#E5D6B6" />
+      <path
+        fillRule="evenodd"
+        d="M0 -142a142 142 0 1 0 0 284a142 142 0 1 0 0 -284ZM0 -107a107 107 0 1 1 0 214a107 107 0 1 1 0 -214Z"
+      />
+      {MARK_ARM_ANGLES.map((angle) => (
+        <g key={angle} transform={`rotate(${angle})`}>
+          <path d="M-42 -128L-41 -165Q-41 -177 -29 -177L29 -177Q41 -177 41 -165L42 -128Z" />
+          <rect x="-16.75" y="-410" width="33.5" height="240" />
+          <circle cy="-405" r="61.5" />
+        </g>
+      ))}
     </svg>
   );
 }
@@ -116,7 +129,7 @@ export function Header() {
       <div className="container-wide flex items-center justify-between h-[76px] md:h-[88px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <BrandMark />
+          <BrandMark className="w-8 h-8 text-midnight" />
           <span className="font-display text-[22px] tracking-[-0.04em] text-midnight">
             Anvayan
           </span>
@@ -199,7 +212,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-10 pb-16">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <BrandMark className="w-6 h-6 brightness-200" />
+              <BrandMark className="w-7 h-7 text-ivory" />
               <span className="font-display text-[22px] text-ivory">
                 Anvayan
               </span>

@@ -25,16 +25,18 @@ src/
 │   ├── sitemap.ts        # sitemap.xml (static)
 │   ├── opengraph-image.png / twitter-image.png  # DRAFT share image (type-only), pending approval
 │   ├── globals.css       # Design tokens (@theme inline), animations
-│   ├── page.tsx          # Homepage — all 10 sections
+│   ├── page.tsx          # Homepage: hero, ticker, problem, case studies, services, approach, founders, final CTA (FAQ removed by owner)
 │   ├── contact/page.tsx  # Contact page with Calendly embed
 │   ├── privacy/page.tsx  # Privacy Policy
 │   ├── terms/page.tsx    # Terms of Service
-│   └── not-found.tsx     # Custom 404
+│   ├── not-found.tsx     # Custom 404
+│   ├── icon.svg / favicon.ico / apple-icon.png  # favicon set (cyan mark on dark tile)
 ├── components/
 │   ├── shared.tsx        # Header, Footer, BrandMark, ArrowUpRight, Reveal
 │   ├── calendly-embed.tsx  # Calendly inline widget (client component)
 │   └── motion-provider.tsx # MotionConfig reducedMotion="user"
-└── fonts/                # Self-hosted .woff2 files
+├── fonts/                # Self-hosted .woff2 files
+public/brand/             # Logo master files (SVG + 1024px PNG): -midnight (light bg), -ivory (dark bg), -cyan (original colour)
 ```
 
 ## Design System
@@ -48,6 +50,7 @@ src/
 - **Next.js 16 has breaking changes** — always check `node_modules/next/dist/docs/` before using unfamiliar APIs
 - `LayoutProps<"/">` type is the Next.js 16 convention for root layout props
 - The Calendly widget loads via external script on the contact page — it won't render in static screenshots but works live
+- Logo: hub-and-spoke mark supplied by Abhas (cyan on black). Redrawn as a clean vector (91% pixel match to the original). BrandMark in shared.tsx draws in currentColor: text-midnight on light, text-ivory on dark. Original cyan only reads on dark (1.8:1 on ivory)
 - Founder photos are placeholder typographic initials (A/N) by decision for now; swap in real photos later
 - Anvayan is India-based and not a UK company. Do NOT claim a London/UK base anywhere; location copy is neutral ("Remote-first"). Privacy/Terms are deliberately light and jurisdiction-neutral (no governing-law clause yet)
 - Calendly: event "15 min audit" (slug 15-min-system-audit). Custom embed colours need a paid Calendly plan, so the colour params are ignored until upgraded. Calendly's own cookie banner is left visible

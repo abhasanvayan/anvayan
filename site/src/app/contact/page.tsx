@@ -50,6 +50,18 @@ export default function ContactPage() {
           <div className="container-wide">
             <Reveal delay={0.3}>
               <CalendlyEmbed />
+              <p className="text-[13px] text-muted mt-4">
+                Calendar not showing?{" "}
+                <a
+                  href="https://calendly.com/abhas-anvayan/15-min-system-audit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-midnight underline underline-offset-2 hover:text-gold-ink transition-colors"
+                >
+                  Book directly on Calendly
+                </a>
+                .
+              </p>
             </Reveal>
           </div>
         </section>

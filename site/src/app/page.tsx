@@ -248,7 +248,11 @@ function Ticker() {
       </div>
       <button
         onClick={() => setPaused(!paused)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] text-muted hover:text-midnight transition-colors px-2 py-1 rounded"
+        className="absolute right-0 top-0 bottom-0 z-10 flex items-center pl-14 pr-5 text-[10px] text-muted hover:text-midnight transition-colors"
+        style={{
+          background:
+            "linear-gradient(to left, var(--color-mist) 62%, transparent)",
+        }}
         aria-label={paused ? "Resume ticker" : "Pause ticker"}
       >
         {paused ? "▶" : "❚❚"}
@@ -284,7 +288,7 @@ function Problem() {
               >
                 Good businesses are
                 <br />
-                held back by <em className="not-italic text-champagne/80">bad handoffs.</em>
+                held back by <em className="not-italic text-gold-ink">bad handoffs.</em>
               </h2>
             </Reveal>
           </div>
@@ -405,13 +409,13 @@ function CaseStudies() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + i * 0.15, duration: 0.5 }}
-                    className="flex items-center gap-3.5 px-5 py-4 bg-white/[0.92] backdrop-blur-sm rounded-xl shadow-[0_14px_40px_rgba(4,7,18,0.15)]"
-                    style={{ marginLeft: `${i * 44}px` }}
+                    className="flex items-center gap-3.5 px-5 py-4 bg-white/[0.92] backdrop-blur-sm rounded-xl shadow-[0_14px_40px_rgba(4,7,18,0.15)] ml-[calc(var(--i)*20px)] sm:ml-[calc(var(--i)*44px)]"
+                    style={{ "--i": i } as React.CSSProperties}
                   >
                     <span className="flex items-center justify-center w-8 h-8 bg-mist rounded-full text-champagne text-[15px]">
                       {pill.icon}
                     </span>
-                    <span className="text-[13px] font-semibold text-midnight">
+                    <span className="text-[13px] font-semibold text-midnight whitespace-nowrap">
                       {pill.label}
                     </span>
                     <span className="ml-auto text-[10px] text-muted">
@@ -542,13 +546,13 @@ function CaseStudies() {
                         : step.state === "active"
                           ? "bg-champagne/[0.15] border border-champagne/20 backdrop-blur-sm"
                           : "bg-white/[0.06] border border-ivory/[0.1] backdrop-blur-sm"
-                    }`}
-                    style={{ marginLeft: `${i * 20}px` }}
+                    } ml-[calc(var(--i)*8px)] sm:ml-[calc(var(--i)*20px)]`}
+                    style={{ "--i": i } as React.CSSProperties}
                   >
                     <span className={`text-[14px] ${step.state === "next" ? "text-ivory/40" : "text-champagne"}`}>
                       {step.icon}
                     </span>
-                    <span className={`text-[13px] font-medium flex-1 ${
+                    <span className={`text-[13px] font-medium flex-1 whitespace-nowrap ${
                       step.state === "done" ? "text-midnight" : step.state === "active" ? "text-ivory" : "text-ivory/50"
                     }`}>
                       {step.label}
@@ -822,105 +826,6 @@ function Founders() {
 }
 
 /* ───────────────────────────────────────────
-   §8 — FAQ
-   Accordion, 5 objections
-   ─────────────────────────────────────────── */
-function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
-
-  const faqs = [
-    {
-      q: "We already use a CRM and some automation. Can you work with what we have?",
-      a: "Yes. We work with the tools you already have — your CRM, email platform, spreadsheets, whatever runs the day-to-day. The point is to connect what's there, not replace it.",
-    },
-    {
-      q: "How do you decide what to automate?",
-      a: "We start by understanding where time is lost and where handoffs break down. Not everything should be automated. We focus on the steps that are repetitive, error-prone, or create bottlenecks — and leave the judgement calls to your team.",
-    },
-    {
-      q: "Do we own the systems you build?",
-      a: "Entirely. Every workflow, integration, and configuration belongs to you. We document everything and hand it over so your team (or another partner) can maintain and extend the system.",
-    },
-    {
-      q: "What does a typical engagement look like?",
-      a: "We start with a few calls to understand the process, the tools, and what's not working. From there we design and build in short stages, with your team reviewing each one before we move on. Most implementations take two to six weeks.",
-    },
-    {
-      q: "What happens after launch?",
-      a: "The system is designed to run without us. We document everything and set up monitoring so your team can see what's happening and make changes. We're around if you want ongoing support, but you won't need it to keep things running.",
-    },
-  ];
-
-  return (
-    <section
-      className="bg-mist"
-      style={{ padding: "clamp(96px, 10vw, 148px) 0" }}
-      aria-labelledby="faq-title"
-    >
-      <div className="container-wide max-w-[860px]">
-        <Reveal>
-          <p className="text-[11px] tracking-[0.18em] uppercase text-muted font-medium mb-4">
-            Common questions
-          </p>
-          <h2
-            id="faq-title"
-            className="font-display leading-[1.08] tracking-[-0.035em] mb-12"
-            style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}
-          >
-            Before you get in touch
-          </h2>
-        </Reveal>
-
-        <div>
-          {faqs.map((faq, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <div className="border-t border-soft-grey">
-                <button
-                  className="w-full text-left py-6 flex items-start justify-between gap-6 group cursor-pointer"
-                  onClick={() => setOpen(open === i ? null : i)}
-                  aria-expanded={open === i}
-                  aria-controls={`faq-panel-${i}`}
-                  id={`faq-button-${i}`}
-                >
-                  <span className="text-[16px] md:text-[17px] text-midnight font-medium leading-[1.5] pr-4">
-                    {faq.q}
-                  </span>
-                  <span
-                    className={`text-champagne text-xl mt-0.5 transition-transform duration-300 shrink-0 ${
-                      open === i ? "rotate-45" : ""
-                    }`}
-                  >
-                    +
-                  </span>
-                </button>
-                <motion.div
-                  id={`faq-panel-${i}`}
-                  role="region"
-                  aria-labelledby={`faq-button-${i}`}
-                  inert={open !== i}
-                  initial={false}
-                  animate={{
-                    height: open === i ? "auto" : 0,
-                    opacity: open === i ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="overflow-hidden"
-                >
-                  <p className="text-[15px] text-muted leading-[1.75] pb-6 max-w-[640px]">
-                    {faq.a}
-                  </p>
-                </motion.div>
-              </div>
-            </Reveal>
-          ))}
-          <div className="border-t border-soft-grey" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ───────────────────────────────────────────
    §9 — FINAL CTA
    Large editorial statement
    ─────────────────────────────────────────── */
@@ -928,7 +833,7 @@ function FinalCTA() {
   return (
     <section
       id="contact"
-      className="bg-ivory border-t border-soft-grey"
+      className="bg-mist"
       style={{ padding: "clamp(96px, 10vw, 148px) 0" }}
     >
       <div className="container-wide">
@@ -988,7 +893,6 @@ export default function HomePage() {
         <Services />
         <Philosophy />
         <Founders />
-        <FAQ />
         <FinalCTA />
       </main>
       <Footer />
