@@ -1,0 +1,58 @@
+# Anvayan Website
+
+## Project Overview
+Professional website for **Anvayan** (anvayan.com) — an AI automation agency. Built as a static site with Next.js 16.
+
+## Tech Stack
+- **Next.js 16** (App Router) + TypeScript + **Tailwind CSS 4** + **Framer Motion** v14.6.0
+- **Static export** (`output: "export"` in `next.config.ts`)
+- **Turbopack** with `@tailwindcss/turbopack` loader
+- Self-hosted fonts via `next/font/local` + `@fontsource` packages (Instrument Serif + DM Sans)
+
+## Key Commands
+```bash
+npm run dev          # Dev server (Turbopack)
+npm run build        # Static export to ./out
+npx serve out -p 3000  # Serve the static build (NOT next start)
+```
+
+## Architecture
+```
+src/
+├── app/
+│   ├── layout.tsx        # Root layout (fonts, metadata)
+│   ├── globals.css       # Design tokens (@theme inline), animations
+│   ├── page.tsx          # Homepage — all 10 sections
+│   ├── contact/page.tsx  # Contact page with Calendly embed
+│   ├── privacy/page.tsx  # Privacy Policy
+│   ├── terms/page.tsx    # Terms of Service
+│   └── not-found.tsx     # Custom 404
+├── components/
+│   └── shared.tsx        # Header, Footer, BrandMark, ArrowUpRight, Reveal
+└── fonts/                # Self-hosted .woff2 files
+```
+
+## Design System
+- **Palette**: Midnight #182139, Midnight Deep #101827, Champagne #C0A46E, Gold Ink #8A6A34, Warm Ivory #F7F5F0, Soft Grey #DDDCD9, Mist #EEECE7, Muted #667085
+- **Typography**: Instrument Serif (display, `--font-display`) + DM Sans (body, `--font-body`)
+- **Hero heading**: `clamp(3rem, 8vw, 7rem)`, line-height 0.98, letter-spacing -0.035em
+- **Container**: max-width 1280px (`container-wide`), reading width 760px (`container-reading`)
+- **Motion**: "Quietly alive" — scroll-triggered reveals via framer-motion `useInView`, rotating words in hero, shimmer effects on accents
+
+## Important Notes
+- **Next.js 16 has breaking changes** — always check `node_modules/next/dist/docs/` before using unfamiliar APIs
+- `LayoutProps<"/">` type is the Next.js 16 convention for root layout props
+- The Calendly widget loads via external script on the contact page — it won't render in static screenshots but works live
+- Founder photos are placeholder typographic initials (A/N) — real photos to be added
+- Primary CTA URL: `https://calendly.com/abhas-anvayan/15-min-system-audit`
+- Email: hello@anvayan.com
+
+## Clients Featured (Case Studies)
+- **JG Asbestos** — Lead capture + quoting automation (GHL + n8n). Metrics: 3.2x pipeline, <90s response, 28% more quotes.
+- **Featherbank Selection** — AI recruitment pipeline (sourcing, screening, ranking with human sign-off)
+- **Certus Recruitment** — Business development funnel (prospect research, outreach sequencing, CRM sync)
+
+## Copy Guidelines
+- No AI-sounding language, no em dashes, no filler
+- Direct, confident, specific — every line should feel like a person wrote it
+- No "pain points", "streamline", "leverage", "revolutionise"
