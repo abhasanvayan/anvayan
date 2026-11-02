@@ -15,6 +15,7 @@ import {
   Header,
   Footer,
 } from "@/components/shared";
+import { STUDIO_LABEL } from "@/lib/site";
 
 /* ───────────────────────────────────────────
    ROTATING WORDS
@@ -102,7 +103,7 @@ function Hero() {
           className="mb-8"
         >
           <Eyebrow tone="gold" align="center">
-            AI automation agency
+            {STUDIO_LABEL}
           </Eyebrow>
         </motion.div>
 

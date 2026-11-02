@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         {
           heading: "Who we are",
           body: [
-            "Anvayan is an AI automation agency. When this policy says “we”, it means Anvayan.",
+            "Anvayan is a boutique AI studio. When this policy says “we”, it means Anvayan.",
           ],
         },
         {

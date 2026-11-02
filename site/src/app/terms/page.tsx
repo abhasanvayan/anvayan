@@ -23,7 +23,7 @@ export default function TermsPage() {
         {
           heading: "Our services",
           body: [
-            "Anvayan provides AI automation consulting and build work. The scope and terms of any project go in a separate written agreement between us and the client.",
+            "Anvayan is a boutique AI studio. We provide consulting and build work. The scope and terms of any project go in a separate written agreement between us and the client.",
           ],
         },
         {

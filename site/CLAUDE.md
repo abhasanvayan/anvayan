@@ -1,7 +1,7 @@
 # Anvayan Website
 
 ## Project Overview
-Professional website for **Anvayan** (anvayan.com) — an AI automation agency. Built as a static site with Next.js 16.
+Professional website for **Anvayan** (anvayan.com) — a boutique AI studio (label lives in STUDIO_LABEL, src/lib/site.ts; "AI automation agency" is deliberately NOT used, it is overplayed). Built as a static site with Next.js 16.
 
 ## Tech Stack
 - **Next.js 16** (App Router) + TypeScript + **Tailwind CSS 4** + **Framer Motion** v14.6.0
