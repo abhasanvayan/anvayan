@@ -720,6 +720,11 @@ function Philosophy() {
             gets stuck. Then we build the fix in small stages and stay close
             while it beds in.
           </p>
+          <p className="text-ivory/70 text-[17px] leading-[1.8] max-w-[600px] mt-5">
+            After launch we&apos;re still around as your{" "}
+            <span className="text-champagne">AI growth partner</span>. We
+            maintain what we built and keep improving it.
+          </p>
         </Reveal>
         <Reveal delay={0.3}>
           <div className="flex flex-wrap gap-2.5 mt-16">
@@ -727,7 +732,7 @@ function Philosophy() {
               "Understand the process",
               "Design the fix",
               "Build in stages",
-              "Tune after launch",
+              "Maintain and improve",
             ].map((step, i) => (
               <span key={step} className="flex items-center gap-2.5">
                 <span className="flex items-center gap-3 px-5 py-3.5 border border-champagne/30 rounded-full text-[12px] text-ivory/90 hover:border-champagne/70 transition-colors">
