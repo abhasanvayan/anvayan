@@ -78,6 +78,15 @@ Source of truth: Abhas's "anti-AI writing style" voice guide (Nov 2026). Spirit 
 - Only claim what is confirmed: JG Asbestos = sub-25-second response + 28% more quotes. No new numbers without Abhas's say-so. No time-to-reply promises.
 - Check: render the site and run a copy lint over the visible text before shipping (banned words/phrases, dashes, parallelisms).
 
+## Social proof (client results and reviews)
+- All proof lives in src/lib/clients.ts (client cards, the four headline numbers, reviews). Edit that file, not the JSX.
+- NEVER invent a number, quote, logo or client. Reviews are word for word from Abhas's public Upwork reviews; excerpt only contiguous sentences, never reword.
+- Confirmed by Abhas in chat: JG Asbestos sub-25-second reply and 28% more quotes; clients consent to being named.
+- Taken from Abhas's public Upwork profile, STILL NEEDS HIS OK before the site goes public: "3 extra placements" (Featherbank; the ~$50k figure is deliberately left out), "11 routines across 6 tools" (JG), "5.0 from 4 reviews, Top Rated", the four reviews, tools (GoHighLevel, n8n, Claude, Recruit CRM).
+- Not used on purpose: voice-agent clients (Angelo's, Woodland, Mialink; direction dropped), unnamed revenue claims ($30k+/month, $70k saved), JG "$5k-7k/month" and the old "45% more leads".
+- Certus Recruitment has no result or quote yet. Add them to clients.ts when provided.
+- Page order: hero, dark results band, client cards, reviews, problem, services, how we work, founders, final CTA.
+
 ## Gold (champagne) usage
 - Lines, rules, rings and icons: champagne (#C0A46E). Text on light backgrounds: gold-ink (#8A6A34) only. Text on dark: champagne.
 - Every section label uses the Eyebrow component (gold rule). Each H2 has one gold accent phrase. Primary buttons use PrimaryCta (gold ring + gold arrow). Section edges use .gold-hairline.

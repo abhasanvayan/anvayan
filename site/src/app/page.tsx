@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   motion,
   useReducedMotion,
@@ -16,6 +16,14 @@ import {
   Footer,
 } from "@/components/shared";
 import { POSITIONING_LABEL } from "@/lib/site";
+import {
+  CLIENTS,
+  PROOF_STATS,
+  REVIEWS,
+  UPWORK_URL,
+  type Client,
+  type Stat,
+} from "@/lib/clients";
 
 /* ───────────────────────────────────────────
    ROTATING WORDS
@@ -202,63 +210,54 @@ function Hero() {
 }
 
 /* ───────────────────────────────────────────
-   §2 — CAPABILITIES TICKER
-   Thin band, pause on hover, accessible
+   §2 — RESULTS BAND
+   Dark strip straight under the hero: the numbers
    ─────────────────────────────────────────── */
-function Ticker() {
-  const items = [
-    "Enquiries answered",
-    "Quotes sent",
-    "Follow-ups sent",
-    "Calls booked",
-    "CVs screened",
-    "Candidates ranked",
-    "CRM updated",
-    "Leads qualified",
-  ];
-  const [paused, setPaused] = useState(false);
-
+function ProofBar() {
   return (
-    <div
-      className="bg-mist border-t border-b border-soft-grey overflow-hidden relative"
-      role="marquee"
-      aria-label="What we automate"
+    <section
+      className="relative bg-midnight-deep text-ivory"
+      aria-label="Results so far"
     >
-      <div
-        className="marquee-track flex gap-12 min-w-max py-5"
-        style={{
-          animation: paused ? "none" : "marquee 40s linear infinite",
-        }}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        {[...items, ...items].map((item, i) => (
-          <span
-            key={i}
-            className="flex items-center gap-12"
-            aria-hidden={i >= items.length ? true : undefined}
-          >
-            <span className="whitespace-nowrap text-[12px] tracking-[0.12em] uppercase text-midnight/70">
-              {item}
-            </span>
-            <span className="text-champagne text-[12px]" aria-hidden="true">
-              ✦
-            </span>
-          </span>
-        ))}
+      <span
+        aria-hidden="true"
+        className="gold-hairline absolute top-0 left-0 right-0 opacity-80"
+      />
+      <div className="container-wide py-14 md:py-16">
+        <Reveal>
+          <Eyebrow tone="dark" className="mb-10">
+            Results so far
+          </Eyebrow>
+        </Reveal>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-0 lg:divide-x lg:divide-champagne/25">
+          {PROOF_STATS.map((stat, i) => (
+            <Reveal
+              key={stat.label}
+              delay={i * 0.08}
+              className="lg:px-8 lg:first:pl-0"
+            >
+              <div>
+                <p
+                  className="font-display text-champagne leading-none tracking-[-0.03em]"
+                  style={{ fontSize: "clamp(2.8rem, 5vw, 4.6rem)" }}
+                >
+                  {stat.value}
+                </p>
+                <p className="text-[14px] text-ivory/85 mt-3 leading-snug">
+                  {stat.label}
+                </p>
+                <p className="text-[11px] tracking-[0.14em] uppercase text-ivory/55 mt-1.5">
+                  {stat.who}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <p className="text-[13px] text-ivory/60 mt-12 pt-6 border-t border-champagne/20">
+          Built for JG Asbestos, Featherbank Selection and Certus Recruitment.
+        </p>
       </div>
-      <button
-        onClick={() => setPaused(!paused)}
-        className="absolute right-0 top-0 bottom-0 z-10 flex items-center pl-14 pr-5 text-[10px] text-muted hover:text-midnight transition-colors"
-        style={{
-          background:
-            "linear-gradient(to left, var(--color-mist) 62%, transparent)",
-        }}
-        aria-label={paused ? "Resume ticker" : "Pause ticker"}
-      >
-        {paused ? "▶" : "❚❚"}
-      </button>
-    </div>
+    </section>
   );
 }
 
@@ -269,7 +268,7 @@ function Ticker() {
 function Problem() {
   return (
     <section
-      className="bg-ivory"
+      className="bg-mist"
       style={{ padding: "clamp(96px, 10vw, 168px) 0" }}
       aria-labelledby="problem-title"
     >
@@ -314,261 +313,422 @@ function Problem() {
 }
 
 /* ───────────────────────────────────────────
-   §4 — SELECTED WORK
-   Three equal-weight client cards
+   §3 — CLIENT WORK
+   One card per client: what we built, what it did
    ─────────────────────────────────────────── */
+type Tone = "dark" | "light";
+
+function BuiltList({ items, tone }: { items: string[]; tone: Tone }) {
+  return (
+    <ul className="mt-6 space-y-2.5 max-w-[440px]">
+      {items.map((item) => (
+        <li
+          key={item}
+          className={`flex gap-3 text-[14px] leading-[1.6] ${
+            tone === "dark" ? "text-ivory/80" : "text-midnight/80"
+          }`}
+        >
+          <span
+            aria-hidden="true"
+            className="mt-[9px] h-1.5 w-1.5 shrink-0 rotate-45 bg-champagne"
+          />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ResultStats({ stats, tone }: { stats: Stat[]; tone: Tone }) {
+  if (stats.length === 0) return null;
+  return (
+    <div className="mt-8 flex flex-wrap gap-x-10 gap-y-5 border-t border-champagne/30 pt-6">
+      {stats.map((stat) => (
+        <div key={stat.label}>
+          <p
+            className={`font-display leading-none tracking-[-0.03em] ${
+              tone === "dark" ? "text-champagne" : "text-gold-ink"
+            }`}
+            style={{ fontSize: "clamp(2.2rem, 3.4vw, 3rem)" }}
+          >
+            {stat.value}
+          </p>
+          <p
+            className={`text-[12px] mt-2 ${
+              tone === "dark" ? "text-ivory/70" : "text-muted"
+            }`}
+          >
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ToolChips({ tools, tone }: { tools: string[]; tone: Tone }) {
+  if (tools.length === 0) return null;
+  return (
+    <ul className="mt-6 flex flex-wrap gap-2" aria-label="Built with">
+      {tools.map((tool) => (
+        <li
+          key={tool}
+          className={`rounded-full border px-3 py-1 text-[11px] tracking-[0.04em] ${
+            tone === "dark"
+              ? "border-champagne/40 text-ivory/80"
+              : "border-champagne/60 text-midnight/80"
+          }`}
+        >
+          {tool}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function CaseCard({
+  client,
+  index,
+  variant,
+  visual,
+}: {
+  client: Client;
+  index: number;
+  variant: "deep" | "light" | "navy";
+  visual: ReactNode;
+}) {
+  const tone: Tone = variant === "light" ? "light" : "dark";
+  const shell =
+    variant === "deep"
+      ? "bg-midnight-deep ring-champagne/25 shadow-[0_24px_80px_rgba(16,24,39,0.35)]"
+      : variant === "navy"
+        ? "bg-midnight ring-champagne/25 shadow-[0_24px_80px_rgba(16,24,39,0.25)]"
+        : "bg-mist ring-champagne/40";
+  return (
+    <Reveal>
+      <article
+        className={`${shell} ring-1 rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] ${
+          index > 0 ? "mt-8" : ""
+        }`}
+      >
+        <div
+          className={`p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 ${
+            tone === "dark" ? "text-ivory" : ""
+          } ${variant === "light" ? "order-1 lg:order-2" : ""}`}
+        >
+          <div>
+            <Eyebrow tone={tone === "dark" ? "dark" : "light"} className="mb-5">
+              {String(index + 1).padStart(2, "0")} / {client.name} · {client.sector}
+            </Eyebrow>
+            <h3
+              className="font-display leading-[1.09] tracking-[-0.03em]"
+              style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
+            >
+              {client.headline}
+            </h3>
+            <p
+              className={`text-[15px] leading-[1.8] mt-5 max-w-[420px] ${
+                tone === "dark" ? "text-ivory/70" : "text-muted"
+              }`}
+            >
+              {client.summary}
+            </p>
+            <BuiltList items={client.built} tone={tone} />
+            <ResultStats stats={client.results} tone={tone} />
+            <ToolChips tools={client.tools} tone={tone} />
+          </div>
+          <a
+            href="#contact"
+            className={`text-[12px] border-b pb-1 inline-flex items-center gap-3 self-start transition-colors ${
+              tone === "dark"
+                ? "text-champagne/80 border-champagne/30 hover:text-champagne hover:border-champagne/60"
+                : "text-muted border-champagne hover:text-midnight hover:border-gold-ink"
+            }`}
+          >
+            Ask about this one
+            <ArrowUpRight className="w-3 h-3" />
+          </a>
+        </div>
+        {visual}
+      </article>
+    </Reveal>
+  );
+}
+
+function JGVisual() {
+  return (
+    <div
+      className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(circle at 56% 40%, #1A2949, #0C1629 66%, #101B2E)",
+      }}
+    >
+      <div className="absolute inset-[8%] border border-ivory/[0.08] rounded-full scale-125" />
+      <div className="absolute inset-[17%] border border-ivory/[0.08] rounded-full scale-125" />
+      <div className="relative z-10 w-[76%] max-w-[420px] grid gap-3 -rotate-[4deg]">
+        {[
+          { icon: "✉", label: "Enquiry comes in", step: "01" },
+          { icon: "✧", label: "Reply goes out", step: "02" },
+          { icon: "✓", label: "CRM updated", step: "03" },
+        ].map((pill, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 + i * 0.15, duration: 0.5 }}
+            className="flex items-center gap-3.5 px-5 py-4 bg-white/[0.92] backdrop-blur-sm rounded-xl shadow-[0_14px_40px_rgba(4,7,18,0.15)] ml-[calc(var(--i)*20px)] sm:ml-[calc(var(--i)*44px)]"
+            style={{ "--i": i } as React.CSSProperties}
+          >
+            <span className="flex items-center justify-center w-8 h-8 bg-mist rounded-full text-champagne text-[15px]">
+              {pill.icon}
+            </span>
+            <span className="text-[13px] font-semibold text-midnight whitespace-nowrap">
+              {pill.label}
+            </span>
+            <span className="ml-auto text-[10px] text-muted">{pill.step}</span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FeatherbankVisual() {
+  return (
+    <div className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden order-2 lg:order-1">
+      <div className="absolute inset-5 border border-soft-grey/60 rounded-lg" />
+      <div className="relative z-10 w-[72%] max-w-[380px] grid gap-3 rotate-[3deg]">
+        {[
+          { initial: "A", label: "Profile matched", tag: "✓" },
+          { initial: "B", label: "Skills checked", tag: "✓" },
+          { initial: "C", label: "Recruiter signs off", tag: "Next" },
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
+            className="h-[52px] rounded-lg bg-white flex items-center gap-3 px-4 shadow-[0_10px_28px_rgba(10,20,48,0.06)]"
+          >
+            <span className="w-7 h-7 rounded-full bg-champagne/20 flex items-center justify-center text-[10px] text-gold-ink font-semibold">
+              {item.initial}
+            </span>
+            <span className="text-[13px] text-midnight font-medium flex-1">
+              {item.label}
+            </span>
+            <span className="text-[12px] text-gold-ink font-semibold">
+              {item.tag}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CertusVisual() {
+  return (
+    <div
+      className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(circle at 44% 50%, #1E2D4D, #131D35 60%, #0F1829)",
+      }}
+    >
+      <div className="absolute inset-[12%] border border-ivory/[0.06] rounded-2xl" />
+      <div className="relative z-10 w-[72%] max-w-[400px] grid gap-2.5 rotate-[2deg]">
+        {[
+          { icon: "◎", label: "Prospect found", status: "Done", state: "done" as const },
+          { icon: "◉", label: "Outreach sent", status: "Done", state: "done" as const },
+          { icon: "▸", label: "Meeting booked", status: "Active", state: "active" as const },
+          { icon: "○", label: "Deal closed", status: "Next", state: "next" as const },
+        ].map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.25 + i * 0.12, duration: 0.45 }}
+            className={`flex items-center gap-3.5 px-5 py-3.5 rounded-xl ${
+              step.state === "done"
+                ? "bg-white/[0.92] backdrop-blur-sm shadow-[0_12px_36px_rgba(4,7,18,0.2)]"
+                : step.state === "active"
+                  ? "bg-champagne/[0.15] border border-champagne/20 backdrop-blur-sm"
+                  : "bg-white/[0.06] border border-ivory/[0.1] backdrop-blur-sm"
+            } ml-[calc(var(--i)*8px)] sm:ml-[calc(var(--i)*20px)]`}
+            style={{ "--i": i } as React.CSSProperties}
+          >
+            <span
+              className={`text-[14px] ${step.state === "next" ? "text-ivory/40" : "text-champagne"}`}
+            >
+              {step.icon}
+            </span>
+            <span
+              className={`text-[13px] font-medium flex-1 whitespace-nowrap ${
+                step.state === "done"
+                  ? "text-midnight"
+                  : step.state === "active"
+                    ? "text-ivory"
+                    : "text-ivory/50"
+              }`}
+            >
+              {step.label}
+            </span>
+            <span
+              className={`text-[10px] font-medium tracking-wide uppercase ${
+                step.state === "done"
+                  ? "text-muted"
+                  : step.state === "active"
+                    ? "text-champagne"
+                    : "text-ivory/30"
+              }`}
+            >
+              {step.status}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CaseStudies() {
   return (
     <section
       id="work"
       className="bg-ivory"
-      style={{ paddingBottom: "clamp(96px, 10vw, 168px)" }}
+      style={{ padding: "clamp(80px, 9vw, 140px) 0" }}
       aria-labelledby="work-title"
     >
       <div className="container-wide">
-        {/* Section heading */}
-        <div className="border-t border-soft-grey pt-4 mb-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <Reveal>
-                <Eyebrow className="mb-4">Recent work</Eyebrow>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h2
-                  id="work-title"
-                  className="font-display leading-[1.06] tracking-[-0.035em]"
-                  style={{ fontSize: "clamp(2.5rem, 4.7vw, 4.3rem)" }}
-                >
-                  Here&apos;s what
-                  <br />
-                  we&apos;ve <em className="not-italic text-gold-ink">built so far.</em>
-                </h2>
-              </Reveal>
-            </div>
-            <Reveal delay={0.2}>
-              <a
-                href="#contact"
-                className="text-[12px] text-muted border-b border-champagne pb-1.5 inline-flex items-center gap-4 hover:text-midnight hover:border-gold-ink transition-colors"
+        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <Reveal>
+              <Eyebrow className="mb-4">Client work</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2
+                id="work-title"
+                className="font-display leading-[1.06] tracking-[-0.035em]"
+                style={{ fontSize: "clamp(2.5rem, 4.7vw, 4.3rem)" }}
               >
-                Want something like this?
-                <ArrowUpRight className="w-3 h-3 text-gold-ink" />
-              </a>
+                Here&apos;s what we built,
+                <br />
+                and <em className="not-italic text-gold-ink">what it did.</em>
+              </h2>
             </Reveal>
           </div>
+          <Reveal delay={0.2}>
+            <a
+              href="#contact"
+              className="text-[12px] text-muted border-b border-champagne pb-1.5 inline-flex items-center gap-4 hover:text-midnight hover:border-gold-ink transition-colors"
+            >
+              Want something like this?
+              <ArrowUpRight className="w-3 h-3 text-gold-ink" />
+            </a>
+          </Reveal>
         </div>
 
-        {/* ── Card 1: JG Asbestos ── dark, text left */}
-        <Reveal>
-          <article className="bg-midnight-deep rounded-xl overflow-hidden ring-1 ring-champagne/25 grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] shadow-[0_24px_80px_rgba(16,24,39,0.35)]">
-            <div className="p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 text-ivory">
-              <div>
-                <Eyebrow tone="dark" className="mb-5">
-                  01 / JG Asbestos · Enquiries and quotes
-                </Eyebrow>
-                <h3
-                  className="font-display leading-[1.09] tracking-[-0.03em]"
-                  style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
-                >
-                  Enquiries get a reply in under 25 seconds.
-                </h3>
-                <p className="text-ivory/70 text-[15px] leading-[1.8] mt-5 max-w-[400px]">
-                  A new enquiry comes in. The system replies and updates the
-                  CRM. JG Asbestos now sends{" "}
-                  <strong className="font-medium text-champagne">
-                    28% more quotes
-                  </strong>
-                  .
-                </p>
-              </div>
-              <a
-                href="#contact"
-                className="text-[12px] text-champagne/80 border-b border-champagne/30 pb-1 inline-flex items-center gap-3 self-start hover:text-champagne hover:border-champagne/60 transition-colors"
-              >
-                Ask about this one
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-            </div>
-            {/* Visual — process flow */}
-            <div
-              className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden"
-              style={{
-                background:
-                  "radial-gradient(circle at 56% 40%, #1A2949, #0C1629 66%, #101B2E)",
-              }}
-            >
-              <div className="absolute inset-[8%] border border-ivory/[0.08] rounded-full scale-125" />
-              <div className="absolute inset-[17%] border border-ivory/[0.08] rounded-full scale-125" />
-              <div className="relative z-10 w-[76%] max-w-[420px] grid gap-3 -rotate-[4deg]">
-                {[
-                  { icon: "✉", label: "Enquiry comes in", step: "01" },
-                  { icon: "✧", label: "Reply goes out", step: "02" },
-                  { icon: "✓", label: "CRM updated", step: "03" },
-                ].map((pill, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + i * 0.15, duration: 0.5 }}
-                    className="flex items-center gap-3.5 px-5 py-4 bg-white/[0.92] backdrop-blur-sm rounded-xl shadow-[0_14px_40px_rgba(4,7,18,0.15)] ml-[calc(var(--i)*20px)] sm:ml-[calc(var(--i)*44px)]"
-                    style={{ "--i": i } as React.CSSProperties}
-                  >
-                    <span className="flex items-center justify-center w-8 h-8 bg-mist rounded-full text-champagne text-[15px]">
-                      {pill.icon}
-                    </span>
-                    <span className="text-[13px] font-semibold text-midnight whitespace-nowrap">
-                      {pill.label}
-                    </span>
-                    <span className="ml-auto text-[10px] text-muted">
-                      {pill.step}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </article>
-        </Reveal>
+        <CaseCard client={CLIENTS.jg} index={0} variant="deep" visual={<JGVisual />} />
+        <CaseCard
+          client={CLIENTS.featherbank}
+          index={1}
+          variant="light"
+          visual={<FeatherbankVisual />}
+        />
+        <CaseCard
+          client={CLIENTS.certus}
+          index={2}
+          variant="navy"
+          visual={<CertusVisual />}
+        />
+      </div>
+    </section>
+  );
+}
 
-        {/* ── Card 2: Featherbank Selection ── light, text right */}
-        <Reveal>
-          <article className="bg-mist rounded-xl overflow-hidden ring-1 ring-champagne/40 grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] mt-8">
-            {/* Visual — candidate cards (left on desktop) */}
-            <div className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden order-2 lg:order-1">
-              <div className="absolute inset-5 border border-soft-grey/60 rounded-lg" />
-              <div className="relative z-10 w-[72%] max-w-[380px] grid gap-3 rotate-[3deg]">
-                {[
-                  { initial: "A", label: "Profile matched", tag: "✓" },
-                  { initial: "B", label: "Skills checked", tag: "✓" },
-                  { initial: "C", label: "Recruiter signs off", tag: "Next" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
-                    className="h-[52px] rounded-lg bg-white flex items-center gap-3 px-4 shadow-[0_10px_28px_rgba(10,20,48,0.06)]"
-                  >
-                    <span className="w-7 h-7 rounded-full bg-champagne/20 flex items-center justify-center text-[10px] text-gold-ink font-semibold">
-                      {item.initial}
-                    </span>
-                    <span className="text-[13px] text-midnight font-medium flex-1">
-                      {item.label}
-                    </span>
-                    <span className="text-[12px] text-gold-ink font-semibold">
-                      {item.tag}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            {/* Text (right on desktop) */}
-            <div className="p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 order-1 lg:order-2">
-              <div>
-                <Eyebrow className="mb-5">
-                  02 / Featherbank Selection · Shortlists
-                </Eyebrow>
-                <h3
-                  className="font-display leading-[1.09] tracking-[-0.03em]"
-                  style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
-                >
-                  From brief to shortlist, without the CV pile.
-                </h3>
-                <p className="text-[15px] text-muted leading-[1.8] mt-5 max-w-[400px]">
-                  A recruiter&apos;s brief goes in and an AI-ranked shortlist
-                  comes out. A recruiter approves every candidate before
-                  anyone gets contacted.
-                </p>
-              </div>
-              <a
-                href="#contact"
-                className="text-[12px] text-muted border-b border-muted/40 pb-1 inline-flex items-center gap-3 self-start hover:text-midnight hover:border-midnight transition-colors"
+/* ───────────────────────────────────────────
+   §4 — CLIENT REVIEWS
+   Word for word from public Upwork reviews
+   ─────────────────────────────────────────── */
+function Reviews() {
+  if (REVIEWS.length === 0) return null;
+  return (
+    <section
+      id="reviews"
+      className="bg-mist"
+      style={{ padding: "clamp(80px, 9vw, 140px) 0" }}
+      aria-labelledby="reviews-title"
+    >
+      <div className="container-wide">
+        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <Reveal>
+              <Eyebrow className="mb-4">What clients say</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2
+                id="reviews-title"
+                className="font-display leading-[1.06] tracking-[-0.035em]"
+                style={{ fontSize: "clamp(2.5rem, 4.7vw, 4.3rem)" }}
               >
-                Ask about this one
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-            </div>
-          </article>
-        </Reveal>
-
-        {/* ── Card 3: Certus Recruitment ── dark, text left */}
-        <Reveal>
-          <article className="bg-midnight rounded-xl overflow-hidden ring-1 ring-champagne/25 grid grid-cols-1 lg:grid-cols-2 min-h-[440px] lg:min-h-[520px] mt-8 shadow-[0_24px_80px_rgba(16,24,39,0.25)]">
-            <div className="p-8 md:p-12 lg:p-[clamp(36px,4.5vw,64px)] flex flex-col justify-between gap-10 text-ivory">
-              <div>
-                <Eyebrow tone="dark" className="mb-5">
-                  03 / Certus Recruitment · New business
-                </Eyebrow>
-                <h3
-                  className="font-display leading-[1.09] tracking-[-0.03em]"
-                  style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
-                >
-                  Follow-ups happen even when everyone&apos;s busy.
-                </h3>
-                <p className="text-ivory/70 text-[15px] leading-[1.8] mt-5 max-w-[400px]">
-                  We find the prospects and run the outreach. Replies sync
-                  straight into the CRM. Manual work gets removed, and the
-                  sales team spends its time on calls.
-                </p>
-              </div>
-              <a
-                href="#contact"
-                className="text-[12px] text-champagne/80 border-b border-champagne/30 pb-1 inline-flex items-center gap-3 self-start hover:text-champagne hover:border-champagne/60 transition-colors"
-              >
-                Ask about this one
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-            </div>
-            {/* Visual — pipeline stages */}
-            <div
-              className="relative flex items-center justify-center min-h-[280px] lg:min-h-0 overflow-hidden"
-              style={{
-                background:
-                  "radial-gradient(circle at 44% 50%, #1E2D4D, #131D35 60%, #0F1829)",
-              }}
+                Word for word,
+                <br />
+                <em className="not-italic text-gold-ink">from their reviews.</em>
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2}>
+            <a
+              href={UPWORK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] text-muted border-b border-champagne pb-1.5 inline-flex items-center gap-4 hover:text-midnight hover:border-gold-ink transition-colors"
             >
-              <div className="absolute inset-[12%] border border-ivory/[0.06] rounded-2xl" />
-              <div className="relative z-10 w-[72%] max-w-[400px] grid gap-2.5 rotate-[2deg]">
-                {[
-                  { icon: "◎", label: "Prospect found", status: "Done", state: "done" as const },
-                  { icon: "◉", label: "Outreach sent", status: "Done", state: "done" as const },
-                  { icon: "▸", label: "Meeting booked", status: "Active", state: "active" as const },
-                  { icon: "○", label: "Deal closed", status: "Next", state: "next" as const },
-                ].map((step, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.25 + i * 0.12, duration: 0.45 }}
-                    className={`flex items-center gap-3.5 px-5 py-3.5 rounded-xl ${
-                      step.state === "done"
-                        ? "bg-white/[0.92] backdrop-blur-sm shadow-[0_12px_36px_rgba(4,7,18,0.2)]"
-                        : step.state === "active"
-                          ? "bg-champagne/[0.15] border border-champagne/20 backdrop-blur-sm"
-                          : "bg-white/[0.06] border border-ivory/[0.1] backdrop-blur-sm"
-                    } ml-[calc(var(--i)*8px)] sm:ml-[calc(var(--i)*20px)]`}
-                    style={{ "--i": i } as React.CSSProperties}
+              Read every review on Upwork
+              <ArrowUpRight className="w-3 h-3 text-gold-ink" />
+            </a>
+          </Reveal>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {REVIEWS.map((review, i) => (
+            <Reveal key={review.quote} delay={(i % 2) * 0.1} className="h-full">
+              <figure className="h-full bg-white rounded-xl p-8 md:p-10 ring-1 ring-champagne/40 flex flex-col justify-between gap-8">
+                <div>
+                  <p
+                    aria-hidden="true"
+                    className="font-display text-champagne text-[64px] leading-none h-8"
                   >
-                    <span className={`text-[14px] ${step.state === "next" ? "text-ivory/40" : "text-champagne"}`}>
-                      {step.icon}
-                    </span>
-                    <span className={`text-[13px] font-medium flex-1 whitespace-nowrap ${
-                      step.state === "done" ? "text-midnight" : step.state === "active" ? "text-ivory" : "text-ivory/50"
-                    }`}>
-                      {step.label}
-                    </span>
-                    <span className={`text-[10px] font-medium tracking-wide uppercase ${
-                      step.state === "done" ? "text-muted" : step.state === "active" ? "text-champagne" : "text-ivory/30"
-                    }`}>
-                      {step.status}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </article>
-        </Reveal>
+                    &ldquo;
+                  </p>
+                  <blockquote
+                    className="font-display text-midnight leading-[1.3] tracking-[-0.02em] mt-3"
+                    style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.65rem)" }}
+                  >
+                    {review.quote}
+                  </blockquote>
+                </div>
+                <figcaption>
+                  <p
+                    className="text-gold-ink tracking-[0.2em] text-[13px]"
+                    role="img"
+                    aria-label="5 out of 5 stars"
+                  >
+                    ★★★★★
+                  </p>
+                  <p className="text-[14px] font-medium text-midnight mt-2">
+                    {review.who}
+                  </p>
+                  <p className="text-[12px] text-muted">{review.project}</p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -600,7 +760,7 @@ function Services() {
   return (
     <section
       id="solutions"
-      className="bg-mist"
+      className="bg-ivory"
       style={{ padding: "clamp(96px, 10vw, 160px) 0" }}
       aria-labelledby="solutions-title"
     >
@@ -891,9 +1051,10 @@ export default function HomePage() {
       <Header />
       <main id="main">
         <Hero />
-        <Ticker />
-        <Problem />
+        <ProofBar />
         <CaseStudies />
+        <Reviews />
+        <Problem />
         <Services />
         <Philosophy />
         <Founders />
