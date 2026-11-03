@@ -1,7 +1,7 @@
 # Anvayan Website
 
 ## Project Overview
-Professional website for **Anvayan** (anvayan.com) — a boutique AI studio (label lives in STUDIO_LABEL, src/lib/site.ts; "AI automation agency" is deliberately NOT used, it is overplayed). Built as a static site with Next.js 16.
+Professional website for **Anvayan** (anvayan.com) — an AI growth partner (label lives in POSITIONING_LABEL, src/lib/site.ts; "AI automation agency" is deliberately NOT used, it is overplayed). Built as a static site with Next.js 16.
 
 ## Tech Stack
 - **Next.js 16** (App Router) + TypeScript + **Tailwind CSS 4** + **Framer Motion** v14.6.0
@@ -57,7 +57,7 @@ public/brand/             # Logo master files (SVG + 1024px PNG): -midnight (lig
 - Founder photos are placeholder typographic initials (A/N) by decision for now; swap in real photos later
 - Anvayan is India-based and not a UK company. Do NOT claim a London/UK base anywhere; location copy is neutral ("Remote-first"). Privacy/Terms are deliberately light and jurisdiction-neutral (no governing-law clause yet)
 - Calendly: event "15 min audit" (slug 15-min-system-audit). Custom embed colours need a paid Calendly plan, so the colour params are ignored until upgraded. Calendly's own cookie banner is left visible
-- Engagement model (confirmed by Abhas): builds the system, then stays on to maintain and improve it. So "AI growth partner" is honest and is used ONCE, in the How we work section. The company label stays "Boutique AI studio".
+- Engagement model (confirmed by Abhas): builds the system, then stays on to maintain and improve it. So "AI growth partner" is honest, and Abhas chose it as the company label everywhere (hero label, page title, meta, legal pages, share image). Do not promise revenue results beyond the confirmed JG Asbestos numbers.
 - Hosting decision: Netlify (free plan, custom domain anvayan.com). Base directory `site`, config in netlify.toml
 - Primary CTA URL: `https://calendly.com/abhas-anvayan/15-min-system-audit`
 - Email: abhas@anvayan.com (hello@ is not used)

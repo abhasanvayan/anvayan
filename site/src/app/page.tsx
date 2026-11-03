@@ -15,7 +15,7 @@ import {
   Header,
   Footer,
 } from "@/components/shared";
-import { STUDIO_LABEL } from "@/lib/site";
+import { POSITIONING_LABEL } from "@/lib/site";
 
 /* ───────────────────────────────────────────
    ROTATING WORDS
@@ -103,7 +103,7 @@ function Hero() {
           className="mb-8"
         >
           <Eyebrow tone="gold" align="center">
-            {STUDIO_LABEL}
+            {POSITIONING_LABEL}
           </Eyebrow>
         </motion.div>
 
