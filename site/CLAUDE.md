@@ -75,7 +75,7 @@ Source of truth: Abhas's "anti-AI writing style" voice guide (Nov 2026). Spirit 
 - Banned vocabulary includes: leverage, streamline, seamless, unlock, empower, elevate, integrated, accelerate, scalable, robust, transparent, innovative, modern-as-hype, and the rest of the list in the voice guide. Also no "nobody", "furthermore", "in order to", "straightforward".
 - Lists: use 2 or 4 items, not 3. Sentence case headings. Contractions. Numbers as digits.
 - Short paragraphs, uneven rhythm, specific scenes over abstractions, take a stance, no filler summaries.
-- Audience: recruitment firms, specialist contractors and other service businesses. Write scenes they recognise (enquiry sits until Monday, CV retyped into the CRM, quote with no follow-up).
+- Audience: recruitment firms, specialist contractors and other service businesses. Keep the hero broad enough for any visitor (chasing leads, updating records). Specific scenes (an enquiry sitting until Monday, a CV retyped into the CRM) belong lower on the page, not in the hero.
 - Only claim what is confirmed: JG Asbestos = sub-25-second response + 28% more quotes. No new numbers without Abhas's say-so. No time-to-reply promises.
 - Check: render the site and run a copy lint over the visible text before shipping (banned words/phrases, dashes, parallelisms).
 
@@ -87,8 +87,8 @@ Source of truth: Abhas's "anti-AI writing style" voice guide (Nov 2026). Spirit 
 - Not used on purpose: voice-agent clients (Angelo's, Woodland, Mialink; direction dropped), unnamed revenue claims ($30k+/month, $70k saved), JG "$5k-7k/month" and the old "45% more leads".
 - Certus Recruitment has no result or quote yet. Add them to clients.ts when provided.
 - Page order (Nov 2026, built for a senior buyer): hero, client-name ticker, dark results band with industries, reviews (Jon video + quotes), case studies, three products, how we work, founders, final CTA. The old Problem and Services sections were removed.
-- Ticker names (supplied by Abhas): JG Asbestos, nailprinter.ca, Angelo's Cleaning, Certus Recruitment, Featherbank Selection, Woodland Building Supply, Pert Home Brokers. Industries are only listed where known (recruitment, specialist contracting, home services, building supply). Ask before adding an industry for nailprinter.ca or Pert Home Brokers.
-- Reviews: Upwork shows the four reviews came from Luke W. (two JG-titled contracts), Jon N. (org TSE) and Ron H. Abhas asked for one to be credited to Featherbank Selection and one to nailprinter.ca, but Upwork records neither. The second Luke W. review is held back (HELD_REVIEWS in clients.ts) until he says which review is which. Never credit a review to a company without his confirmation.
+- Ticker names (supplied by Abhas): JG Asbestos, nailprinter.ca, Angelo's Cleaning, Certus Recruitment, Featherbank Selection, Woodland Building Supply, Perth Home Brokers. Industries are only listed where known (recruitment, specialist contracting, home services, building supply). Ask before adding an industry for nailprinter.ca or Perth Home Brokers.
+- Reviews (owner instruction, 4 Nov 2026): shown as JG Asbestos, nailprinter.ca and Featherbank Selection, with the "rehire Abhas" review removed. Upwork's own contract records name the reviewers Luke W. (both JG-titled contracts), Jon N. (org TSE) and Ron H., so the owner is vouching for the mapping. Each business is named publicly, so each should be happy to be quoted. No real review text exists yet for Angelo's Cleaning; never invent one.
 - Video: unlisted YouTube nbeFW7Sw-hw, click-to-play with a local poster so nothing loads from YouTube until pressed. Jon's surname, company and role still needed.
 
 ## Products (source: the two Anvayan decks, Oct 2026)

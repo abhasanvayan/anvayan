@@ -21,10 +21,10 @@ export const CLIENT_NAMES = [
   "Certus Recruitment",
   "Featherbank Selection",
   "Woodland Building Supply",
-  "Pert Home Brokers",
+  "Perth Home Brokers",
 ];
 
-// Only industries we know for sure. nailprinter.ca and Pert Home Brokers are
+// Only industries we know for sure. nailprinter.ca and Perth Home Brokers are
 // NOT listed here until the owner confirms what industry they sit in.
 export const INDUSTRIES = [
   "Recruitment",
@@ -132,42 +132,40 @@ export type Review = {
 
 // Word for word from public 5-star Upwork reviews. Do not edit the quotes.
 //
-// ATTRIBUTION NOTE (Nov 2026): the owner asked for one review to be credited
-// to Featherbank Selection and one to nailprinter.ca. Upwork's contract data
-// does not record either as a client of these four reviews:
-//   - Luke W.   two contracts titled "JG Asbestos - Proposal Phase 1"
-//   - Jon N.    org "TSE", GHL + CRM integrations contract
-//   - Ron H.    n8n contract: "Integrate our clients CRM with our AI platform"
-// So labels stay as Upwork records them until the owner says which is which.
+// ATTRIBUTION (owner's instruction, 4 Nov 2026): credit these to JG Asbestos,
+// nailprinter.ca and Featherbank Selection. NOTE: Upwork's own contract records
+// list the reviewers as Luke W. (both JG-titled contracts), Jon N. (org TSE)
+// and Ron H. (n8n contract for an AI platform). The owner confirms the mapping
+// below is right. If a business objects, change `who` here, nothing else.
 export const REVIEWS: Review[] = [
   {
     quote:
       "He worked across GoHighLevel and n8n, cleaned up the logic, handled edge cases, and made the system reliable in real-world use.",
     who: "JG Asbestos",
-    project: "5-star Upwork review",
+    project: "5-star review",
   },
   {
     quote:
-      "He is a wizard when it comes to understanding how automation systems work and connect together. Plus he is a product engineer so he understands the connection points very well. I would and will rehire Abhas.",
-    who: "Upwork client",
-    project: "5-star review, GoHighLevel integrations",
+      "Never felt that anything was an issue for him, regular updates all the way through the project. Completed faster than expected and to a far better outcome based on some suggestion he made. Highly recommended!",
+    who: "nailprinter.ca",
+    project: "5-star review",
   },
   {
     quote:
       "Before starting any build, he takes the time to clearly map out the scope of work so expectations, logic, and deliverables are aligned from the beginning. That level of clarity saves time and prevents rework.",
-    who: "Upwork client",
-    project: "5-star review, n8n integrations",
+    who: "Featherbank Selection",
+    project: "5-star review",
   },
 ];
 
-// Not shown. Same client (Luke W.) as the first review above, so it is held
-// back until the owner confirms which company it should be credited to.
+// Not shown. Removed by the owner because "I would and will rehire Abhas"
+// reads like an Upwork review. Kept here in case it is wanted later.
 export const HELD_REVIEWS: Review[] = [
   {
     quote:
-      "Never felt that anything was an issue for him, regular updates all the way through the project. Completed faster than expected and to a far better outcome based on some suggestion he made. Highly recommended!",
-    who: "TO CONFIRM (owner says nailprinter.ca)",
-    project: "5-star Upwork review",
+      "He is a wizard when it comes to understanding how automation systems work and connect together. Plus he is a product engineer so he understands the connection points very well. I would and will rehire Abhas.",
+    who: "Unattributed (Upwork reviewer Jon N.)",
+    project: "5-star review",
   },
 ];
 

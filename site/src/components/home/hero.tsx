@@ -353,11 +353,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="text-[17px] md:text-[18px] text-muted leading-[1.7] max-w-[620px] mx-auto mt-8 tracking-[-0.01em]"
+          className="text-[17px] md:text-[18px] text-muted leading-[1.7] text-balance max-w-[620px] mx-auto mt-8 tracking-[-0.01em]"
         >
-          An enquiry lands at 6pm and sits there until Monday. A CV gets
-          retyped into the CRM by hand. We build the automation that deals
-          with it, inside the tools you already pay for.
+          Your team spends too much of the day chasing leads and updating
+          records. We build the automation that handles it, inside the tools
+          you already pay for.
         </motion.p>
 
         <motion.div
