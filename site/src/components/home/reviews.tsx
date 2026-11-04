@@ -57,10 +57,10 @@ function VideoTestimonial() {
               <span className="h-1.5 w-1.5 rotate-45 bg-champagne" />
               Client story
             </span>
-            {/* play button sits in the empty space beside his face */}
+            {/* play button: dead centre, like any video */}
             <span
               aria-hidden="true"
-              className="absolute right-[15%] top-1/2 flex h-20 w-20 -translate-y-1/2 items-center justify-center md:h-24 md:w-24"
+              className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center md:h-24 md:w-24"
             >
               <span className="absolute inset-0 rounded-full bg-champagne/50 animate-ping motion-reduce:animate-none [animation-duration:2.8s]" />
               <span className="relative flex h-full w-full items-center justify-center rounded-full bg-champagne text-midnight shadow-[0_10px_40px_rgba(0,0,0,0.4)] ring-4 ring-ivory/60 transition-transform duration-300 group-hover:scale-110">
