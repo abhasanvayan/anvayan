@@ -192,11 +192,6 @@ export function Reviews() {
             ))}
           </div>
         </div>
-        <Reveal delay={0.2}>
-          <p className="mt-8 text-[12px] text-muted">
-            Quoted word for word from public client reviews on Upwork.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
