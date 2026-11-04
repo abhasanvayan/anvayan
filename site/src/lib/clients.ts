@@ -180,14 +180,14 @@ export const FOUNDERS = [
     title: "Chief AI Consultant",
     photo: "/team/abhas.jpg",
     alt: "Portrait of Abhas, Chief AI Consultant",
-    bio: "Six years as a product manager at Reliance Industries, a Fortune Global 500 company. Builds and advises on products and systems.",
+    bio: "6 years as a product manager at Reliance Industries, a Fortune Global 500 company.",
   },
   {
     name: "Nishi",
     title: "Chief Technology Officer",
     photo: "/team/nishi.jpg",
     alt: "Portrait of Nishi, Chief Technology Officer",
-    bio: "Claude-certified developer with 5 years as a data scientist at Gartner. Now building AI solutions for enterprises and SMBs.",
+    bio: "Claude-certified developer. 5 years as a data scientist at Gartner.",
   },
 ];
 

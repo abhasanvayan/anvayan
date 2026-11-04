@@ -15,7 +15,7 @@ export function Team() {
     <section
       id="about"
       className="relative overflow-hidden bg-ivory"
-      style={{ padding: "clamp(96px, 10vw, 168px) 0" }}
+      style={{ padding: "clamp(80px, 8vw, 128px) 0" }}
       aria-labelledby="team-title"
     >
       <span
@@ -28,7 +28,7 @@ export function Team() {
       />
 
       <div className="container-wide relative">
-        <div className="mb-16 grid grid-cols-1 items-end gap-10 md:mb-20 lg:grid-cols-[1.15fr_1fr] lg:gap-[130px]">
+        <div className="mb-12 grid grid-cols-1 items-end gap-8 md:mb-14 lg:grid-cols-[1.15fr_1fr] lg:gap-[130px]">
           <div>
             <Reveal>
               <Eyebrow className="mb-4">Who you&apos;ll work with</Eyebrow>
@@ -46,28 +46,16 @@ export function Team() {
             </Reveal>
           </div>
           <Reveal delay={0.2} direction="right">
-            <div>
-              <p className="max-w-[500px] text-[16px] leading-[1.85] text-muted">
-                We&apos;ve built for recruitment firms and specialist
-                contractors, and the same problems show up in plenty of
-                service businesses. Tight teams with real deadlines have no
-                patience for a tool that creates more admin than it saves.
-              </p>
-              <p className="mt-5 max-w-[500px] text-[16px] leading-[1.85] text-muted">
-                You work with the two of us. The people who design the system
-                are the people who build it.
-              </p>
-            </div>
+            <p className="max-w-[420px] text-[16px] leading-[1.75] text-muted lg:ml-auto">
+              You work with the two of us. The people who design the system
+              are the people who build it.
+            </p>
           </Reveal>
         </div>
 
-        <div className="mx-auto grid max-w-[940px] grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:gap-x-14">
+        <div className="mx-auto grid max-w-[940px] grid-cols-1 items-start gap-x-8 gap-y-14 sm:grid-cols-2 lg:gap-x-14">
           {FOUNDERS.map((founder, i) => (
-            <Reveal
-              key={founder.name}
-              delay={i * 0.12}
-              className={i === 1 ? "sm:mt-20" : ""}
-            >
+            <Reveal key={founder.name} delay={i * 0.12}>
               <figure className="group">
                 <div className="relative pb-4 pr-4">
                   {/* offset gold frame */}
@@ -104,10 +92,10 @@ export function Team() {
                     </figcaption>
                   </div>
                 </div>
-                <div className="mt-8 pr-4">
+                <div className="mt-7 pr-4">
                   <span
                     aria-hidden="true"
-                    className="mb-4 block h-px w-10 bg-champagne"
+                    className="mb-3 block h-px w-10 bg-champagne"
                   />
                   <p className="text-[15px] leading-[1.7] text-muted text-balance">
                     {founder.bio}
