@@ -8,9 +8,6 @@
 // - Product claims follow the Anvayan decks: targets are targets, not results.
 // - "source" notes say where each fact came from, so it can be re-checked.
 
-export const UPWORK_URL =
-  "https://www.upwork.com/freelancers/~01738ebb4b0a725303";
-
 /* ─────────────── Clients (ticker + industries) ─────────────── */
 
 // Names shown in the "worked with" ticker. Supplied by the owner (Nov 2026).
@@ -106,8 +103,9 @@ export const PROOF_STATS: { value: string; label: string; who: string }[] = [
   { value: "<25s", label: "to reply to a new enquiry", who: "JG Asbestos" },
   { value: "28%", label: "more quotes sent", who: "JG Asbestos" },
   { value: "3", label: "extra placements", who: "Featherbank Selection" },
-  // source: owner's Upwork profile (Top Rated, 4 reviews, all 5 stars)
-  { value: "5.0", label: "from 4 client reviews", who: "Upwork, Top Rated" },
+  // source: owner's public reviews (4 reviews, all 5 stars). The platform is
+  // deliberately not named on the site (owner's instruction, 4 Nov 2026).
+  { value: "5.0", label: "average rating", who: "From 4 client reviews" },
 ];
 
 /* ─────────────── Video testimonial ─────────────── */
@@ -166,8 +164,30 @@ export const HELD_REVIEWS: Review[] = [
   {
     quote:
       "He is a wizard when it comes to understanding how automation systems work and connect together. Plus he is a product engineer so he understands the connection points very well. I would and will rehire Abhas.",
-    who: "Unattributed (Upwork reviewer Jon N.)",
+    who: "Unattributed",
     project: "5-star review",
+  },
+];
+
+/* ─────────────── Founders ─────────────── */
+
+// Titles and bios supplied by the owner (4 Nov 2026). Written without
+// pronouns on purpose: the owner has not said which to use.
+// Photos: first attachment = Nishi, second = Abhas (order as given).
+export const FOUNDERS = [
+  {
+    name: "Abhas",
+    title: "Chief AI Consultant",
+    photo: "/team/abhas.jpg",
+    alt: "Portrait of Abhas, Chief AI Consultant",
+    bio: "Six years as a product manager at Reliance Industries, a Fortune Global 500 company. Builds and advises on products and systems.",
+  },
+  {
+    name: "Nishi",
+    title: "Chief Technology Officer",
+    photo: "/team/nishi.jpg",
+    alt: "Portrait of Nishi, Chief Technology Officer",
+    bio: "Ex-Reliance, with 5+ years as a data scientist. Now building AI solutions for enterprises and SMBs.",
   },
 ];
 

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Reveal, Eyebrow, ArrowUpRight } from "@/components/shared";
-import { REVIEWS, TESTIMONIAL_VIDEO, UPWORK_URL, type Review } from "@/lib/clients";
+import { Reveal, Eyebrow } from "@/components/shared";
+import { REVIEWS, TESTIMONIAL_VIDEO, type Review } from "@/lib/clients";
 
 /* ───────────────────────────────────────────
    VIDEO TESTIMONIAL
@@ -131,7 +131,7 @@ function ReviewCard({ review }: { review: Review }) {
 
 /* ───────────────────────────────────────────
    REVIEWS
-   One video, then written reviews word for word from Upwork
+   One video, then written reviews, quoted word for word
    ─────────────────────────────────────────── */
 export function Reviews() {
   const [first, ...rest] = REVIEWS;
@@ -160,17 +160,6 @@ export function Reviews() {
               </h2>
             </Reveal>
           </div>
-          <Reveal delay={0.2}>
-            <a
-              href={UPWORK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[12px] text-muted border-b border-champagne pb-1.5 inline-flex items-center gap-4 hover:text-midnight hover:border-gold-ink transition-colors"
-            >
-              Read every review on Upwork
-              <ArrowUpRight className="w-3 h-3 text-gold-ink" />
-            </a>
-          </Reveal>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
