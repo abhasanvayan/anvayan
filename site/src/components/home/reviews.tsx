@@ -12,7 +12,7 @@ import { REVIEWS, TESTIMONIAL_VIDEO, UPWORK_URL, type Review } from "@/lib/clien
    ─────────────────────────────────────────── */
 function VideoTestimonial() {
   const [playing, setPlaying] = useState(false);
-  const { youtubeId, poster, name, detail } = TESTIMONIAL_VIDEO;
+  const { youtubeId, poster, name, detail, duration } = TESTIMONIAL_VIDEO;
   return (
     <figure className="bg-white rounded-xl p-3 md:p-4 ring-1 ring-champagne/40 shadow-[0_24px_60px_rgba(16,24,39,0.10)]">
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-midnight-deep">
@@ -37,17 +37,45 @@ function VideoTestimonial() {
               sizes="(min-width: 1024px) 560px, 100vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
+            {/* brand grade: deep navy rising from the bottom and in from the right */}
             <span
               aria-hidden="true"
-              className="absolute inset-0 bg-midnight-deep/30 transition-colors duration-300 group-hover:bg-midnight-deep/20"
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(16,24,39,0.82) 0%, rgba(16,24,39,0.12) 46%, transparent 68%), linear-gradient(to left, rgba(16,24,39,0.62) 0%, transparent 58%)",
+              }}
             />
             <span
               aria-hidden="true"
-              className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-champagne text-midnight shadow-[0_10px_40px_rgba(0,0,0,0.35)] ring-4 ring-ivory/60 transition-transform duration-300 group-hover:scale-110"
+              className="absolute inset-0 ring-1 ring-inset ring-champagne/40"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-midnight-deep/80 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-champagne ring-1 ring-champagne/40 backdrop-blur-sm"
             >
-              <svg viewBox="0 0 24 24" className="ml-1 h-7 w-7" fill="currentColor">
-                <path d="M8 5.5v13l11-6.5z" />
-              </svg>
+              <span className="h-1.5 w-1.5 rotate-45 bg-champagne" />
+              Client story
+            </span>
+            {/* play button sits in the empty space beside his face */}
+            <span
+              aria-hidden="true"
+              className="absolute right-[15%] top-1/2 flex h-20 w-20 -translate-y-1/2 items-center justify-center md:h-24 md:w-24"
+            >
+              <span className="absolute inset-0 rounded-full bg-champagne/50 animate-ping motion-reduce:animate-none [animation-duration:2.8s]" />
+              <span className="relative flex h-full w-full items-center justify-center rounded-full bg-champagne text-midnight shadow-[0_10px_40px_rgba(0,0,0,0.4)] ring-4 ring-ivory/60 transition-transform duration-300 group-hover:scale-110">
+                <svg viewBox="0 0 24 24" className="ml-1 h-8 w-8" fill="currentColor">
+                  <path d="M8 5.5v13l11-6.5z" />
+                </svg>
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-midnight-deep/80 px-3.5 py-1.5 text-[12px] text-ivory ring-1 ring-champagne/40 backdrop-blur-sm"
+            >
+              Watch
+              <span className="text-champagne">·</span>
+              {duration}
             </span>
           </button>
         )}

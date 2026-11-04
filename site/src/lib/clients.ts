@@ -119,7 +119,9 @@ export const TESTIMONIAL_VIDEO = {
   youtubeId: "nbeFW7Sw-hw",
   poster: "/testimonials/jon-poster.jpg",
   name: "Jon",
-  detail: "Client testimonial",
+  // Owner's description (4 Nov 2026). Company name still to come.
+  detail: "Owns a car garage CRM automation business",
+  duration: "2 min",
 };
 
 /* ─────────────── Written reviews ─────────────── */
