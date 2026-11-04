@@ -164,7 +164,7 @@ export function PrimaryCta({
    ─────────────────────────────────────────── */
 const NAV_ITEMS = [
   { label: "Work", href: "/#work" },
-  { label: "What we build", href: "/#solutions" },
+  { label: "What we build", href: "/#products" },
   { label: "How we work", href: "/#approach" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/contact" },

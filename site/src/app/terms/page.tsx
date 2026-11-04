@@ -47,7 +47,7 @@ export default function TermsPage() {
         {
           heading: "Other people's tools",
           body: [
-            "This site links to third-party tools such as Calendly. We don't control them, and we aren't responsible for their content or for how they handle your data.",
+            "This site links to third-party tools such as Calendly and YouTube. We don't control them, and we aren't responsible for their content or for how they handle your data.",
           ],
         },
         {

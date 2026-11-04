@@ -95,17 +95,33 @@ body {
 .shimmer-text {
   background: linear-gradient(
     110deg,
-    var(--color-champagne) 0%,
-    #D4BC8A 30%,
-    #F0E4C8 50%,
-    #D4BC8A 70%,
-    var(--color-champagne) 100%
+    #8A6A34 0%,
+    #B08F46 30%,
+    #D2B56A 50%,
+    #B08F46 70%,
+    #8A6A34 100%
   );
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Typewriter caret for the hero headline */
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.hero-caret {
+  display: inline-block;
+  width: 0.05em;
+  height: 0.82em;
+  margin-left: 0.06em;
+  vertical-align: -0.06em;
+  background: var(--color-gold-ink);
+  animation: caret-blink 1s step-end infinite;
 }
 
 /* Subtle glow pulse for primary CTAs */
@@ -127,6 +143,7 @@ body {
   .marquee-track,
   .shimmer-gold,
   .shimmer-text,
+  .hero-caret,
   .cta-glow {
     animation: none !important;
   }

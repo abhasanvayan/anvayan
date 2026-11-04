@@ -37,6 +37,7 @@ export default function PrivacyPage() {
               </LegalLink>{" "}
               covers that.
             </>,
+            "The testimonial video on the homepage only loads from YouTube after you press play. YouTube may set its own cookies at that point.",
           ],
         },
         {
