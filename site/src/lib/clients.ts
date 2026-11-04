@@ -187,7 +187,7 @@ export const FOUNDERS = [
     title: "Chief Technology Officer",
     photo: "/team/nishi.jpg",
     alt: "Portrait of Nishi, Chief Technology Officer",
-    bio: "Ex-Reliance, with 5+ years as a data scientist. Now building AI solutions for enterprises and SMBs.",
+    bio: "Claude-certified developer with 5 years as a data scientist at Gartner. Now building AI solutions for enterprises and SMBs.",
   },
 ];
 

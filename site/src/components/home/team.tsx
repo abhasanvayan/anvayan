@@ -20,11 +20,11 @@ export function Team() {
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[62%] hidden h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-champagne/35 lg:block"
+        className="pointer-events-none absolute left-1/2 top-[62%] hidden h-[680px] w-[680px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-champagne/35 lg:block"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[62%] hidden h-[1040px] w-[1040px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-champagne/20 lg:block"
+        className="pointer-events-none absolute left-1/2 top-[62%] hidden h-[930px] w-[930px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-champagne/20 lg:block"
       />
 
       <div className="container-wide relative">
@@ -61,7 +61,7 @@ export function Team() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:gap-x-16">
+        <div className="mx-auto grid max-w-[940px] grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:gap-x-14">
           {FOUNDERS.map((founder, i) => (
             <Reveal
               key={founder.name}
@@ -104,7 +104,7 @@ export function Team() {
                     </figcaption>
                   </div>
                 </div>
-                <div className="mt-8 max-w-[500px] pr-4">
+                <div className="mt-8 pr-4">
                   <span
                     aria-hidden="true"
                     className="mb-4 block h-px w-10 bg-champagne"
